@@ -168,7 +168,7 @@
         </v-container>
       </section>
 
-      <v-footer color="blue darken-2">
+      <v-footer color="orange darken-2">
         <v-layout row wrap align-center>
           <v-flex xs12>
             <div class="white--text ml-4">

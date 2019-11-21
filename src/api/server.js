@@ -11,7 +11,7 @@ app.use(bodyparser.json())
 app.use(routes)
 
 app.use((err, req, res, next) => {
-  res.json(err)
+  console.log(err)
 })
 
 module.exports = app
