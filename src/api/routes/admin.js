@@ -8,7 +8,7 @@ router.post('/login', (request, response, next) => {
 
   pool.query('SELECT * FROM users WHERE userName = $1 AND pass = $2', [body.userName, body.pass], (err, res) => {
     if (err) return next(err)
-    response.send('ok')
+    response.json(res.rows)
 })
 
 })

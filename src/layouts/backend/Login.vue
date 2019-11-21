@@ -44,7 +44,7 @@
                 </v-form>
                 <pre>{{postBody}}</pre>
                 <v-list-item v-if="errors && errors.length">
-                  <v-list-item-content v-for="error of errors" :key="error">
+                  <v-list-item-content v-for="error of errors" :key="error.id">
                     <v-list-item-title>{{error.message}}</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
@@ -63,6 +63,7 @@
 
 <script>
   import http from "../../../http-common"
+  import { mapActions } from 'vuex'
 
   export default {
     data() {
@@ -78,14 +79,18 @@
       
     },
     methods: {
+      ...mapActions(
+        ['addUserGroup']
+      ),
       sendData () {
         http.post(`/admin/login`, {
           body: this.postBody,
         })
         .then(response => {
 
-          if (response.data === 'ok') {
-            return this.$router.push('/')
+          if (response.data[0].usergroup === 0) {
+            this.addUserGroup("125487")
+            return this.$router.push('/admin')
           }else{
             /* eslint-disable no-console */
             console.log('Mauvais mot de passe');

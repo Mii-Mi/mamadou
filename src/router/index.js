@@ -12,8 +12,12 @@ export default new VueRouter({
     },
     // Backend
     {
-      path: '/admin',
+      path: '/login',
       component: () =>import('../layouts/backend/Login')
+    },
+    {
+      path: '/admin',
+      component: () => import('../layouts/backend/Admin')
     }
   ],
   mode: "history"
