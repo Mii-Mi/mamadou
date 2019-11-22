@@ -1,14 +1,8 @@
 const { Router } = require('express'),
-  router = Router(),
-  pool = require('../db/index')
+      router = Router()
 
-  router.get('/', (request, response, next) => {
+const welcome = require('../controllers/frontend/welcome')
 
-    pool.query('SELECT * FROM monsters ORDER BY id ASC', (err, res) => {
-        if (err) return next(err)
-        response.json(res.rows)
-    })
-
-})
+router.get('/', welcome)
 
 module.exports = router

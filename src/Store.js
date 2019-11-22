@@ -8,6 +8,7 @@ Vue.use(Vuex)
 Vue.config.productionTip = false
 
 Vue.use(VueAxios, axios)
+axios.defaults.withCredentials = true
 
 
 const state = {
@@ -17,6 +18,9 @@ const mutations = {
   ADD_USERGROUP (state, group) {
     state.userGroup = group
   }
+}
+const getters = {
+  getGroup: state => state.userGroup
 }
 const actions = {
   addUserGroup (store, group) {
@@ -28,7 +32,7 @@ const actions = {
 let store = new Vuex.Store({
   state: state,
   mutations: mutations,
-  getters: {},
+  getters: getters,
   actions: actions
 })
 
