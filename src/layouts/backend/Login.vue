@@ -24,11 +24,11 @@
                 <v-spacer />
               </v-toolbar>
               <v-card-text>
-                <v-form>
+                <v-form @submit.prevent="login">
                   <v-text-field
                     v-model="postBody.userName"
                     label="Utilisateur"
-                    name="useName"
+                    name="userName"
                     prepend-icon="fas fa-user"
                     type="text"
                   />
@@ -41,8 +41,9 @@
                     prepend-icon="fas fa-lock"
                     type="password"
                   />
+                  <v-btn color="primary" type="submit">Connexion</v-btn>
+                  <pre>{{postBody}}</pre>
                 </v-form>
-                <pre>{{postBody}}</pre>
                 <v-list-item v-if="errors && errors.length">
                   <v-list-item-content v-for="error of errors" :key="error.id">
                     <v-list-item-title>{{error.message}}</v-list-item-title>
@@ -51,7 +52,6 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <v-btn color="primary" @click="sendData()">Connexion</v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
@@ -62,8 +62,7 @@
 </template>
 
 <script>
-  import http from "../../../http-common"
-  import { mapActions } from 'vuex'
+  import {AUTH_REQUEST} from '../../store/actions/auth'
 
   export default {
     data() {
@@ -79,26 +78,10 @@
       
     },
     methods: {
-      ...mapActions(
-        ['addUserGroup']
-      ),
-      sendData () {
-        http.post(`/admin/login`, {
-          body: this.postBody,
-        })
-        .then(response => {
-
-          if (response.data[0].usergroup === 0) {
-            this.addUserGroup("125487")
-            return this.$router.push('/admin')
-          }else{
-            /* eslint-disable no-console */
-            console.log('Mauvais mot de passe');
-            /* eslint-enable no-console */
-          }
-        })
-        .catch(e => {
-          this.errors.push(e)
+      login: function () {
+        const { userName, pass } = this.postBody
+        this.$store.dispatch(AUTH_REQUEST, { userName, pass }).then(() => {
+        this.$router.push('/admin')
         })
       }
     }
