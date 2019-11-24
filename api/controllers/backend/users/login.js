@@ -42,7 +42,7 @@ module.exports = (request, response, next) => {
             );
 
             const setTstamp = {
-              text: `UPDATE users SET last_login = now() WHERE id = ($1)`,
+              text: `UPDATE users SET last_login = current_timestamp WHERE id = ($1)`,
               values: [res.rows[0].id]
             }  
 
