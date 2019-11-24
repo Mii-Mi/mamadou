@@ -3,11 +3,11 @@ const pool = require('../../../db/index'),
       uuid = require('uuid')
 
 module.exports = (req, res, next) => {
-  const {username, pass} = req.body
+  // const {username, pass} = req.body
 
   const getUser = {
     text:`SELECT * FROM users WHERE LOWER(username) = LOWER($1);`,
-    values:[username]
+    values:[req.body.userName]
   }
 
   pool.query(
@@ -19,7 +19,7 @@ module.exports = (req, res, next) => {
         });
       } else {
         // username is available
-        bcrypt.hash(pass, 10, (err, hash) => {
+        bcrypt.hash(req.body.pass, 10, (err, hash) => {
           if (err) {
             return res.status(500).send({
               msg: err
@@ -29,7 +29,7 @@ module.exports = (req, res, next) => {
 
             const addUser = {
               text:`INSERT INTO users (id, username, pass, registered) VALUES ($1, $2, $3, $4)`,
-              values:[uuid.v4(), username, hash, new Date()]
+              values:[uuid.v4(), req.body.userName, hash, new Date()]
             }
 
             pool.query(
