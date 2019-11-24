@@ -13,7 +13,7 @@ const getters = {
 const actions = {
   [USER_REQUEST]: ({commit}) => {
     commit(USER_REQUEST)
-    apiCall({url: 'user/me'})
+    apiCall({url: 'users/profile'})
       .then(resp => {
         commit(USER_SUCCESS, resp)
       })
