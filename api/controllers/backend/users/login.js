@@ -16,7 +16,7 @@ module.exports = (request, response, next) => {
       if (err) { return next(err) };
       if (!res.rows.length) {
         return response.status(401).send({
-          msg: 'Username is incorrect!'
+          msg: 'Username or password is incorrect!'
         });
       }
       // check password
@@ -28,7 +28,7 @@ module.exports = (request, response, next) => {
           if (bErr) {
             throw bErr;
             return response.status(401).send({
-              msg: 'password is incorrect!'
+              msg: 'Username or password is incorrect!'
             });
           }
           if (bResult) {

@@ -3,7 +3,6 @@ const pool = require('../../../db/index'),
       uuid = require('uuid')
 
 module.exports = (req, res, next) => {
-  // const {username, pass} = req.body
 
   const getUser = {
     text:`SELECT * FROM users WHERE LOWER(username) = LOWER($1);`,
@@ -13,7 +12,7 @@ module.exports = (req, res, next) => {
   pool.query(
     getUser,
     (err, result) => {
-      if (result.length) {
+      if (result.rows.length) {
         return res.status(409).send({
           msg: 'This username is already in use!'
         });
