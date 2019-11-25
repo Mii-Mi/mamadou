@@ -31,7 +31,7 @@ app.use(bodyparser.urlencoded({extended: true}))
 //   }
 // }))
 
-app.use(history({index: '/default.html'}))
+app.use(history({index: '/'}))
 app.use(routes)
 
 app.use((err, req, res, next) => {
