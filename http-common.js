@@ -1,7 +1,7 @@
 import axios from "axios";
  
 export default axios.create({
-  baseURL: "https://cecile.cf:3333/",
+  baseURL: "https://cecile.cf/",
   headers: {
     "Content-type": "application/json",
   },
