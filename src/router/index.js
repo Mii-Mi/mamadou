@@ -39,5 +39,5 @@ export default new VueRouter({
       beforeEnter: ifAuthenticated,
     }
   ],
-  mode: "history"
+  // mode: "history"
 })
