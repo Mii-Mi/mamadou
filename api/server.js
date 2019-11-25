@@ -6,7 +6,8 @@ const express = require('express'),
       // pgSession = require('connect-pg-simple')(session),
       routes = require('./routes'),
       bodyparser = require('body-parser'),
-      cors = require('cors')
+      cors = require('cors'),
+      history = require('connect-history-api-fallback')
 
 app.use(cors({
   origin: 'https://lab.cecile.cf',
@@ -30,8 +31,8 @@ app.use(bodyparser.urlencoded({extended: true}))
 //   }
 // }))
 
+app.use(history())
 app.use(routes)
-
 
 app.use((err, req, res, next) => {
   console.log(err)
