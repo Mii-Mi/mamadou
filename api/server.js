@@ -9,7 +9,7 @@ const express = require('express'),
       cors = require('cors')
 
 app.use(cors({
-  origin: '*',
+  origin: 'https://lab.cecile.cf',
   credentials: true
 }))
 
