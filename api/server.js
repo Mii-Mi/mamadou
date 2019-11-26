@@ -7,10 +7,11 @@ const express = require('express'),
       routes = require('./routes'),
       bodyparser = require('body-parser'),
       cors = require('cors'),
+      corsConfig = require('./config/cors_config'),
       history = require('connect-history-api-fallback')
 
 app.use(cors({
-  origin: 'https://lab.cecile.cf',
+  origin: corsConfig.origin,
   credentials: true
 }))
 

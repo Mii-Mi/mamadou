@@ -1,7 +1,8 @@
-import axios from "axios";
+import axios from "axios"
+import axiosConfig from './src/config/axios_config'
  
 export default axios.create({
-  baseURL: "https://cecile.cf/",
+  baseURL: axiosConfig.baseUrl,
   headers: {
     "Content-type": "application/json",
   },
