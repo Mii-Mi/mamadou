@@ -28,18 +28,24 @@ module.exports = {
   },
 
   isLoggedIn: (req, res, next) => {
-    try {
-      const token = req.headers.authorization
-      const decoded = jwt.verify(
-        token,
-        'SECRETKEY'
-      );
-      req.userData = decoded;
-      next();
-    } catch (err) {
+    if (req.session.user) {
+      try {
+        const token = req.headers.authorization
+        const decoded = jwt.verify(
+          token,
+          'SECRETKEY'
+        );
+        req.userData = decoded;
+        next();
+      } catch (err) {
+        return res.status(401).send({
+          msg: 'Your session is not valid!'
+        });
+      }
+    }else {
       return res.status(401).send({
         msg: 'Your session is not valid!'
-      });
+      })
     }
   }
   

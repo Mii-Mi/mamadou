@@ -48,7 +48,13 @@ module.exports = (request, response, next) => {
 
             pool.query(
               setTstamp
-            );
+            )
+
+            request.session.user = {
+              username: res.rows[0].username,
+              userId: res.rows[0].id
+            }
+
             return response.status(200).send({
               msg: 'Logged in!',
               token,

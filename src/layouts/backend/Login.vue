@@ -42,7 +42,6 @@
                     type="password"
                   />
                   <v-btn color="primary" type="submit">Connexion</v-btn>
-                  <pre>{{postBody}}</pre>
                 </v-form>
                 <v-list-item v-if="errors && errors.length">
                   <v-list-item-content v-for="error of errors" :key="error.id">
