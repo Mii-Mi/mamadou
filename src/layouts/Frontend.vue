@@ -10,7 +10,7 @@
             class="white--text"
           >
             <img src="../assets/amazonite1.png" alt="amazonite.png" height="200">
-            <h1 class="white--text mb-2 display-1 text-center">Sébastien guérisseur</h1>
+            <h1 class="white--text mb-2 display-1 text-center">{{ title }}</h1>
             <div class="subheading mb-4 text-center">gri-gri, marabout, retour de l'amour</div>
             <v-btn
               class="mt-12"
@@ -43,49 +43,9 @@
           <v-flex xs12>
             <v-container grid-list-xl>
               <v-layout row wrap align-center>
-                <v-flex xs12 md4>
-                  <v-card flat class="transparent">
-                    <v-card-text class="text-center">
-                      <v-icon x-large class="blue--text text--lighten-2">fas fa-procedures</v-icon>
-                    </v-card-text>
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-center">Material Design</div>
-                    </v-card-title>
-                    <v-card-text>
-                      <test />
-                    </v-card-text>
-                  </v-card>
-                </v-flex>
-                <v-flex xs12 md4>
-                  <v-card flat class="transparent">
-                    <v-card-text class="text-center">
-                      <v-icon x-large class="blue--text text--lighten-2">fas fa-atom</v-icon>
-                    </v-card-text>
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="headline">Fast development</div>
-                    </v-card-title>
-                    <v-card-text>
-                      Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                      Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                      Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
-                    </v-card-text>
-                  </v-card>
-                </v-flex>
-                <v-flex xs12 md4>
-                  <v-card flat class="transparent">
-                    <v-card-text class="text-center">
-                      <v-icon x-large class="blue--text text--lighten-2">fas fa-glass-cheers</v-icon>
-                    </v-card-text>
-                    <v-card-title primary-title class="layout justify-center">
-                      <div class="headline text-center">Completely Open Sourced</div>
-                    </v-card-title>
-                    <v-card-text>
-                      Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                      Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                      Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
-                    </v-card-text>
-                  </v-card>
-                </v-flex>
+                <posts v-if="post[0]" :type="place[0]" :item="{title: post[0].title, content: post[0].content}"/>
+                <posts v-if="post[1]" :type="place[1]" :item="{title: post[1].title, content: post[1].content}"/>
+                <posts v-if="post[2]" :type="place[2]" :item="{title: post[2].title, content: post[2].content}"/>
               </v-layout>
             </v-container>
           </v-flex>
@@ -113,54 +73,8 @@
       <section>
         <v-container grid-list-xl>
           <v-layout row wrap justify-center class="my-12">
-            <v-flex xs12 sm4>
-              <v-card flat class="transparent">
-                <v-card-title primary-title class="layout justify-center">
-                  <div class="headline">Company info</div>
-                </v-card-title>
-                <v-card-text>
-                  Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                  Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti.
-                </v-card-text>
-              </v-card>
-            </v-flex>
-            <v-flex xs12 sm4 offset-sm1>
-              <v-card flat class="transparent">
-                <v-card-title primary-title class="layout justify-center">
-                  <div class="headline">Coordonnées</div>
-                </v-card-title>
-                <v-card-text>
-                  Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare.
-                </v-card-text>
-                <v-list class="transparent">
-                  <v-list-item>
-                    <v-list-item-action>
-                      <v-icon class="blue--text text--lighten-2">mdi-phone</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                      <v-list-item-title>777-867-5309</v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                  <v-list-item>
-                    <v-list-item-action>
-                      <v-icon class="blue--text text--lighten-2">mdi-map-marker</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                      <v-list-item-title>Chicago, US</v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                  <v-list-item>
-                    <v-list-item-action>
-                      <v-icon class="blue--text text--lighten-2">mdi-email</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                      <v-list-item-title>john@vuetifyjs.com</v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list>
-              </v-card>
-            </v-flex>
+            <who-am v-if="post[3]" :item="{title: post[3].title, content: post[3].content}" />
+            <contact-info v-if="post[0]" :item="{topo: post[0].topo, phone: post[0].phone, adress: post[0].adress, email: post[0].email}"/>
           </v-layout>
         </v-container>
       </section>
@@ -178,7 +92,7 @@
         <v-layout row wrap align-center>
           <v-flex xs12>
             <div class="white--text ml-4">
-              <a class="white--text" href="https://lab.cecile/#/admin" target="_blank">admin</a>
+              <a class="white--text" href="https://lab.cecile.cf/#/admin" target="_blank">admin</a>
             </div>
           </v-flex>
         </v-layout>
@@ -188,20 +102,37 @@
 </template>
 
 <script>
-import Test from '../components/Test'
-
+import http from "../../http-common";
+import Posts from '../components/Posts'
+import WhoAm from '../components/WhoAm'
+import ContactInfo from '../components/ContactInfo'
 
 export default {
   name: 'Welcome',
 
   components: {
-    Test
+    Posts,
+    WhoAm,
+    ContactInfo
   },
 
   data: () => {
     return {
-      title: 'Sebastien guérisseur'
+      title: 'Sébastien guérisseur',
+      place: ['left', 'center', 'right'],
+      post: []
     }
   },
+  mounted() {
+    http
+    .get('/')
+    .then(response => {
+      this.post = response.data
+      }
+    )
+    // .catch(error => {
+    //   console.log(error)
+    // })
+  }
 };
 </script>
