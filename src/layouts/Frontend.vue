@@ -91,7 +91,7 @@
         </v-layout>
         <v-layout row wrap align-center>
           <v-flex xs12>
-            <div class="white--text ml-4">
+            <div class="white--text ml-4 text-right">
               <a class="white--text" href="https://lab.cecile.cf/#/admin" target="_blank">admin</a>
             </div>
           </v-flex>

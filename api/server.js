@@ -1,7 +1,7 @@
 const express = require('express'),
       app = express(),
       session = require('express-session'),
-      // pg = require('pg')
+      pg = require('pg')
       pgPool = require('./db/index'),
       pgSession = require('connect-pg-simple')(session),
       routes = require('./routes'),

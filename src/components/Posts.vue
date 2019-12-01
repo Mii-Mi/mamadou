@@ -27,7 +27,6 @@ export default {
     }
   },
   mounted() {
-    // console.log(this.item)
     if(this.type === 'left') {
       this.icon = 'fas fa-atom'
     }else if(this.type === 'center') {
