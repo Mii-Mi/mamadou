@@ -34,18 +34,18 @@
         >
           <v-flex xs12 sm4 class="my-4">
             <div class="text-center">
-              <h2 class="headline">Tu peux mettre un titre ...</h2>
+              <h2 class="headline">{{ post[0].big }}</h2>
               <span class="subheading">
-                ... et un sous-titre
+                {{ post[0].small}}
               </span>
             </div>
           </v-flex>
           <v-flex xs12>
             <v-container grid-list-xl>
               <v-layout row wrap align-center>
-                <posts v-if="post[0]" :type="place[0]" :item="{title: post[0].title, content: post[0].content}"/>
-                <posts v-if="post[1]" :type="place[1]" :item="{title: post[1].title, content: post[1].content}"/>
-                <posts v-if="post[2]" :type="place[2]" :item="{title: post[2].title, content: post[2].content}"/>
+                <posts v-if="post[0]" :type="place[0]" :item="{title: post[0].title, content: post[0].content, icon: post[0].icon}"/>
+                <posts v-if="post[1]" :type="place[1]" :item="{title: post[1].title, content: post[1].content, icon: post[1].icon}"/>
+                <posts v-if="post[2]" :type="place[2]" :item="{title: post[2].title, content: post[2].content, icon: post[2].icon}"/>
               </v-layout>
             </v-container>
           </v-flex>
@@ -55,8 +55,8 @@
       <section>
         <v-parallax src="../assets/section.jpg" height="380">
           <v-layout column align-center justify-center>
-            <div class="headline white--text mb-4 text-center">Ici un autre titre ...</div>
-            <em>... et un sous-titre</em>
+            <div class="headline white--text mb-4 text-center">{{ post[4].big }}</div>
+            <em>{{ post[4].small }}</em>
             <v-btn
               class="mt-12"
               color="blue lighten-2"
@@ -102,7 +102,7 @@
 </template>
 
 <script>
-import http from "../../http-common";
+import http from "../../http-common"
 import Posts from '../components/Posts'
 import WhoAm from '../components/WhoAm'
 import ContactInfo from '../components/ContactInfo'

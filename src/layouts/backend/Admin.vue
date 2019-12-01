@@ -52,7 +52,11 @@
     >
       <v-spacer />
 
-      <span class="white--text">&copy; 2019</span>
+      <span class="white--text ml-4">
+              Propulsé avec
+              <v-icon class="red--text">mdi-heart</v-icon>
+              par <a class="white--text" href="" target="_blank">Cécile</a>
+      </span>
     </v-footer>
   </v-app>
 </template>

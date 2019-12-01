@@ -10,14 +10,11 @@
         :elevation="hover ? 12 : 2"
         class="mx-auto"
       >
-        <v-card-text class="text-center">
-          <v-icon x-large class="blue--text text--lighten-2">{{ info.icon }}</v-icon>
-        </v-card-text>
         <v-card-title primary-title class="layout justify-center">
-          <div class="headline text-center">{{ info.title }}</div>
+          <div class="headline text-center">{{ info.big }}</div>
         </v-card-title>
         <v-card-text>
-          <div><p>{{ info.content }}</p></div>
+          <div class="text-center"><p>{{ info.small }}</p></div>
         </v-card-text>
         <v-fab-transition>
           <v-btn
