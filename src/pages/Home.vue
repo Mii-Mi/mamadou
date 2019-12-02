@@ -11,7 +11,7 @@
     </v-row>
 
     <v-row>
-      <hover-card-title :mobile='12' :item="{big: post[4].big, small: post[4].small}" />
+      <hover-card-title v-if="post[4]" :mobile='12' :item="{big: post[4].big, small: post[4].small}" />
     </v-row>
 
     <v-row>

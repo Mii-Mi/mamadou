@@ -34,8 +34,8 @@
         >
           <v-flex xs12 sm4 class="my-4">
             <div class="text-center">
-              <h2 class="headline">{{ post[0].big }}</h2>
-              <span class="subheading">
+              <h2 v-if="post[0]" class="headline">{{ post[0].big }}</h2>
+              <span v-if="post[0]" class="subheading">
                 {{ post[0].small}}
               </span>
             </div>
@@ -55,8 +55,8 @@
       <section>
         <v-parallax src="../assets/section.jpg" height="380">
           <v-layout column align-center justify-center>
-            <div class="headline white--text mb-4 text-center">{{ post[4].big }}</div>
-            <em>{{ post[4].small }}</em>
+            <div v-if="post[4]" class="headline white--text mb-4 text-center">{{ post[4].big }}</div>
+            <em v-if="post[4]">{{ post[4].small }}</em>
             <v-btn
               class="mt-12"
               color="blue lighten-2"
