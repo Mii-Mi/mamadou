@@ -1,6 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer
+      class="grey lighten-3"
       v-model="drawer"
       app
       right
@@ -40,7 +41,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
     </v-app-bar>
 
-    <v-content>
+    <v-content class="grey lighten-2">
       <!-- Here my container component -->
       <home />
       <!-- End of my container component -->

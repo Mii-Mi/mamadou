@@ -34,7 +34,7 @@
               <v-icon>mdi-pencil</v-icon>
             </v-btn>
           </v-fab-transition>
-        <form-dialog v-model="dialog" />
+        <form-dialog v-model="dialog" v-if="info" :item="{icon: info.icon, title: info.title, content: info.content}" />
         
       </v-card>
     </v-hover>

@@ -31,7 +31,7 @@
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
         </v-fab-transition>
-        <form-dialog v-model="dialog" />
+        <form-dialog v-model="dialog" v-if="info" :item="{big: info.big, small: info.small}"></form-dialog>
       </v-card>
     </v-hover>
   </v-col>

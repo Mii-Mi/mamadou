@@ -57,7 +57,7 @@
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
         </v-fab-transition>
-        <form-dialog v-model="dialog" />
+        <form-dialog v-model="dialog" :item="{phone: info.phone, adress: info.adress, email: info.email}" />
       </v-card>
     </v-hover>
   </v-col>

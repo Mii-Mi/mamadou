@@ -1,5 +1,5 @@
 <template>
-  <v-container class="grey lighten-5">
+  <v-container class="grey lighten-2">
     <v-row>
       <hover-card-title v-if="post[0]" :mobile='12' :item="{big: post[0].big, small: post[0].small}" />
     </v-row>
