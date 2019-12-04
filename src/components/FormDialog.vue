@@ -13,7 +13,7 @@
         <v-card-text>
             <v-form v-model="valid">
               <v-container>
-                <v-row v-if="postBody.icon">
+                <v-row v-if="info.icon">
                   <v-col
                     cols="12"
                   >
@@ -25,7 +25,7 @@
                     ></v-text-field>
                   </v-col>
                 </v-row>
-                <v-row v-if="postBody.title">
+                <v-row v-if="info.title">
                   <v-col
                     cols="12"
                   >
@@ -37,7 +37,7 @@
                     ></v-text-field>
                   </v-col>
                 </v-row>
-                <v-row v-if="postBody.big">
+                <v-row v-if="info.big">
                   <v-col
                     cols="12"
                   >
@@ -49,7 +49,7 @@
                     ></v-text-field>
                   </v-col>
                 </v-row>
-                <v-row v-if="postBody.small">
+                <v-row v-if="info.small">
                   <v-col
                     cols="12"
                   >
@@ -61,7 +61,7 @@
                     ></v-text-field>
                   </v-col>
                 </v-row>
-                <v-row v-if="postBody.phone">
+                <v-row v-if="info.phone">
                   <v-col
                     cols="12"
                   >
@@ -73,7 +73,7 @@
                     ></v-text-field>
                   </v-col>
                 </v-row>
-                <v-row v-if="postBody.adress">
+                <v-row v-if="info.adress">
                   <v-col
                     cols="12"
                   >
@@ -85,7 +85,7 @@
                     ></v-text-field>
                   </v-col>
                 </v-row>
-                <v-row v-if="postBody.email">
+                <v-row v-if="info.email">
                   <v-col
                     cols="12"
                   >
@@ -97,7 +97,7 @@
                     ></v-text-field>
                   </v-col>
                 </v-row>
-                <v-row v-if="postBody.content">
+                <v-row v-if="info.content">
                   <v-col
                     cols="12"
                   >
@@ -151,6 +151,7 @@
         v => !!v || 'le champs contenu est requis'
       ],
       postBody: {},
+      info: {}
     }),
     props: {
       value: Boolean,
@@ -167,7 +168,8 @@
       }
     },
     mounted() {
-      return this.postBody = {...this.item}
+      this.info = {...this.item}
+      this.postBody = {...this.item}
     }
   }
 </script>
