@@ -40,7 +40,7 @@ export default {
   },
   mounted() {
     http
-    .get('/')
+    .get('/admin')
     .then(response => {
       this.post = response.data
       }

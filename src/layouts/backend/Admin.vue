@@ -63,7 +63,8 @@
 </template>
 
 <script>
-
+  import axios from '../../../http-common'
+  // import {AUTH_LOGOUT} from '../../store/actions/auth'
   import home from '../../pages/Home'
 
   export default {
@@ -78,6 +79,21 @@
     }),
     components: {
       home
+    },
+    beforeMount () {
+      axios.interceptors.response.use(response => {
+        return response;
+      },
+      error => {
+        if (error.response.status === 401) {
+          // this.$store.dispatch(AUTH_LOGOUT).then(() => {
+            this.$router.push('/')
+          //   }
+          // )
+        }
+        return error;
+        }
+      )
     }
   }
 </script>

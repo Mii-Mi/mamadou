@@ -1,4 +1,5 @@
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken'),
+      pool = require('../db/index')
 
 module.exports = {
 
@@ -28,25 +29,45 @@ module.exports = {
   },
 
   isLoggedIn: (req, res, next) => {
+    
     if (req.session.user) {
-      try {
-        const token = req.headers.authorization
-        const decoded = jwt.verify(
-          token,
-          'SECRETKEY'
-        );
-        req.userData = decoded;
-        next();
-      } catch (err) {
-        return res.status(401).send({
-          msg: 'Your session is not valid!'
-        });
+      const getUser = {
+        text: `SELECT * FROM users WHERE id = $1`,
+        values: [req.session.user.userId]
       }
+      pool.query(
+        getUser,
+        (err, res) => {
+          // user does not exists
+          if (err) {
+            return res.status(401).send({
+              msg: 'Your session is not valid 1 !'
+            })
+          };
+          if (!res.rows.length) {
+            return res.status(401).send({
+              msg: 'Username or password is incorrect!'
+            });
+          }
+        }
+      )
     }else {
       return res.status(401).send({
-        msg: 'Your session is not valid!'
+        msg: 'Your session is not valid 2 !'
       })
     }
+    try {
+      const token = req.headers.authorization
+      const decoded = jwt.verify(
+      token,
+      'SECRETKEY'
+      );
+      req.userData = decoded;
+      next();
+    } catch (err) {
+      return res.status(401).send({
+        msg: 'Your session is not valid 3 !'
+      });
+    }
   }
-  
 };
