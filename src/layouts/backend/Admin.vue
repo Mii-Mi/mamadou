@@ -64,7 +64,7 @@
 
 <script>
   import axios from '../../../http-common'
-  // import {AUTH_LOGOUT} from '../../store/actions/auth'
+  import {AUTH_LOGOUT} from '../../store/actions/auth'
   import home from '../../pages/Home'
 
   export default {
@@ -86,10 +86,10 @@
       },
       error => {
         if (error.response.status === 401) {
-          // this.$store.dispatch(AUTH_LOGOUT).then(() => {
+          this.$store.dispatch(AUTH_LOGOUT).then(() => {
             this.$router.push('/')
-          //   }
-          // )
+            }
+          )
         }
         return error;
         }
