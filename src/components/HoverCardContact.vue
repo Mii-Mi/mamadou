@@ -57,7 +57,7 @@
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
         </v-fab-transition>
-        <form-dialog v-if="info[0]" v-model="dialog" :item="{id: info[0].id, topo: info[0].topo, phone: info[0].phone, adress: info[0].adress, email: info[0].email}" />
+        <form-dialog v-if="info[0]" v-model="dialog" :item="{id: info[0].id, topo: info[0].topo, phone: info[0].phone, adress: info[0].adress, email: info[0].email, type: 'contactpost'}" />
       </v-card>
     </v-hover>
   </v-col>

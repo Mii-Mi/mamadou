@@ -30,7 +30,7 @@
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
         </v-fab-transition>
-        <form-dialog v-model="dialog" v-if="info[0]" :item="{id: info[0].id, big: info[0].big, small: info[0].small}"></form-dialog>
+        <form-dialog v-model="dialog" v-if="info[0]" :item="{id: info[0].id, big: info[0].big, small: info[0].small, type:'titles'}"></form-dialog>
       </v-card>
     </v-hover>
   </v-col>

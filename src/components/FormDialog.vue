@@ -172,7 +172,9 @@
     },
     methods: {
       update() {
-        return axios.put(`/articles/${this.info.id}`, this.postBody)
+        axios
+          .put(`/articles/${this.info.id}`, this.postBody)
+          .then(() => {this.$router.push('/')})
       }
     },
     mounted() {
