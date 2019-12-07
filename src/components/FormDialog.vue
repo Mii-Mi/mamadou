@@ -56,7 +56,7 @@
                     <v-text-field
                       v-model="postBody.small"
                       :rules="titleRules"
-                      label="Titre"
+                      label="Sous-titre"
                       required
                     ></v-text-field>
                   </v-col>
@@ -80,7 +80,7 @@
                     <v-text-field
                       v-model="postBody.phone"
                       :rules="titleRules"
-                      label="Titre"
+                      label="Téléphone"
                       required
                     ></v-text-field>
                   </v-col>
@@ -92,7 +92,7 @@
                     <v-text-field
                       v-model="postBody.adress"
                       :rules="titleRules"
-                      label="Titre"
+                      label="Adresse"
                       required
                     ></v-text-field>
                   </v-col>
@@ -104,7 +104,7 @@
                     <v-text-field
                       v-model="postBody.email"
                       :rules="titleRules"
-                      label="Titre"
+                      label="Courriel"
                       required
                     ></v-text-field>
                   </v-col>
