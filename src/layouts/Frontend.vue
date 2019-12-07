@@ -34,18 +34,18 @@
         >
           <v-flex xs12 sm4 class="my-4">
             <div class="text-center">
-              <h2 v-if="post[0]" class="headline">{{ post[0].big }}</h2>
-              <span v-if="post[0]" class="subheading">
-                {{ post[0].small}}
+              <h2 v-if="titles[0]" class="headline">{{ titles[0].big }}</h2>
+              <span v-if="titles[0]" class="subheading">
+                {{ titles[0].small}}
               </span>
             </div>
           </v-flex>
           <v-flex xs12>
             <v-container grid-list-xl>
               <v-layout row wrap align-center>
-                <posts v-if="post[0]" :type="place[0]" :item="{title: post[0].title, content: post[0].content, icon: post[0].icon}"/>
-                <posts v-if="post[1]" :type="place[1]" :item="{title: post[1].title, content: post[1].content, icon: post[1].icon}"/>
-                <posts v-if="post[2]" :type="place[2]" :item="{title: post[2].title, content: post[2].content, icon: post[2].icon}"/>
+                <posts :place="1"/>
+                <posts :place="2"/>
+                <posts :place="3"/>
               </v-layout>
             </v-container>
           </v-flex>
@@ -55,8 +55,8 @@
       <section>
         <v-parallax src="../assets/section.jpg" height="380">
           <v-layout column align-center justify-center>
-            <div v-if="post[4]" class="headline white--text mb-4 text-center">{{ post[4].big }}</div>
-            <em v-if="post[4]">{{ post[4].small }}</em>
+            <div v-if="titles[1]" class="headline white--text mb-4 text-center">{{ titles[1].big }}</div>
+            <em v-if="titles[1]">{{ titles[1].small }}</em>
             <v-btn
               class="mt-12"
               color="blue lighten-2"
@@ -73,8 +73,8 @@
       <section>
         <v-container grid-list-xl>
           <v-layout row wrap justify-center class="my-12">
-            <who-am v-if="post[3]" :item="{title: post[3].title, content: post[3].content}" />
-            <contact-info v-if="post[0]" :item="{topo: post[0].topo, phone: post[0].phone, adress: post[0].adress, email: post[0].email}"/>
+            <who-am :place="4"/>
+            <contact-info />
           </v-layout>
         </v-container>
       </section>
@@ -119,7 +119,7 @@ export default {
   data: () => {
     return {
       title: 'Sébastien guérisseur',
-      place: ['left', 'center', 'right'],
+      titles: [],
       post: []
     }
   },
@@ -127,7 +127,7 @@ export default {
     http
     .get('/')
     .then(response => {
-      this.post = response.data
+      this.titles = response.data
       }
     )
     // .catch(error => {

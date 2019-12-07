@@ -1,10 +1,10 @@
 const pool = require('../../db/index')
 
-module.exports = (request, response, next) => {
+module.exports = (req, res, next) => {
 
-    pool.query('SELECT * FROM commonposts, contactpost, titles', (err, res) => {
-        if (err) return next(err)
-        response.json(res.rows)
-    })
+  pool.query('SELECT * FROM titles', (err, titles) => {
+    if (err) return next(err)
+    res.json(titles.rows)
+  })
 
-  }
+}

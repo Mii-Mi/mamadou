@@ -5,10 +5,13 @@ const userMiddleware = require('../middlewares/user')
 
 const login = require('../controllers/backend/users/login'),
       signup = require('../controllers/backend/users/signup'),
-      welcome = require('../controllers/backend/users/welcome'),
+      titles = require('../controllers/backend/users/articles/titles'),
+      articles = require('../controllers/frontend/articles/get')
       profile = require('../controllers/backend/users/profile')
 
-router.get('/', userMiddleware.isLoggedIn, welcome)
+router.get('/articles/titles/:position', userMiddleware.isLoggedIn, titles)
+router.get('/articles/common/:position', userMiddleware.isLoggedIn, articles.single)
+router.get('/articles/contact', userMiddleware.isLoggedIn, articles.contact)
 router.post('/login', login)
 router.post('/signup', userMiddleware.validateRegister, signup)
 router.get('/profile', userMiddleware.isLoggedIn, profile)

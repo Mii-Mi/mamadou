@@ -11,7 +11,7 @@
                 <v-spacer />
               </v-toolbar>
         <v-card-text>
-            <v-form v-model="valid">
+            <v-form v-model="valid" @submit="update()">
               <v-container>
                 <v-row v-if="info.icon">
                   <v-col
@@ -57,6 +57,18 @@
                       v-model="postBody.small"
                       :rules="titleRules"
                       label="Titre"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+                <v-row v-if="info.topo">
+                  <v-col
+                    cols="12"
+                  >
+                    <v-text-field
+                      v-model="postBody.topo"
+                      :rules="titleRules"
+                      label="Topo"
                       required
                     ></v-text-field>
                   </v-col>
@@ -126,20 +138,11 @@
 </template>
 
 <script>
+  import axios from '../../http-common'
+
   export default {
     data: () => ({
       valid: false,
-      // postBody: {
-      //   big: this.item.big,
-      //   small: this.item.small,
-      //   icon: this.item.icon,
-      //   title: this.item.title,
-      //   content: this.item.content,
-      //   phone: this.item.phone,
-      //   adress: this.item.adress,
-      //   email: this.item.email,
-      // },
-
       
       iconRules: [
         v => !!v || 'le champs icone est requis'
@@ -165,6 +168,11 @@
         set (value) {
           this.$emit('input', value)
         }
+      }
+    },
+    methods: {
+      update() {
+        return axios.put(`/articles/${this.info.id}`, this.postBody)
       }
     },
     mounted() {
