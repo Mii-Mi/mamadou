@@ -11,9 +11,9 @@ module.exports = (req, res, next) => {
     if (req.body[key]) fields.push(key)
   })
 
-  fields.forEach((field, index) => {
+  fields.forEach(async(field, index) => {
 
-    pool.query(
+    await pool.query(
       `UPDATE ${table} SET ${field} = ($1) WHERE id = $2`,
       [req.body[field], id],
       (err, resp) => {
