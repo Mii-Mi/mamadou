@@ -11,7 +11,7 @@
                 <v-spacer />
               </v-toolbar>
         <v-card-text>
-            <v-form v-model="valid" @submit="update()">
+            <v-form v-model="valid" @submit.prevent="update()">
               <v-container>
                 <v-row v-if="info.icon">
                   <v-col
