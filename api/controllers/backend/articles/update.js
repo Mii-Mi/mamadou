@@ -1,13 +1,13 @@
 const pool = require('../../../db/index')
 
-module.exports = (req, res, next) => {
+module.exports = async(req, res, next) => {
 
   const id = req.params.id,
         keys = ['icon', 'title', 'big', 'small', 'topo', 'phone', 'adress', 'email', 'content'],
         fields = [],
         table = req.body.type
 
-  keys.forEach(key => {
+  await keys.forEach(key => {
     if (req.body[key]) fields.push(key)
   })
 
