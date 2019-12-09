@@ -1,5 +1,6 @@
 <template>
   <v-app id="inspire">
+    <snackbar />
     <v-content>
       <v-container
         class="fill-height"
@@ -62,6 +63,7 @@
 
 <script>
   import {AUTH_REQUEST} from '../../store/actions/auth'
+  import snackbar from '../../components/Snackbar'
 
   export default {
     data() {
@@ -73,15 +75,18 @@
         errors: []
       }
     },
-    props: {
-      
+    components: {
+      snackbar
     },
     methods: {
       login: function () {
         const { userName, pass } = this.postBody
         this.$store.dispatch(AUTH_REQUEST, { userName, pass }).then(() => {
-        this.$router.push('/admin')
+          this.$router.push('/admin')
         })
+        setTimeout(() => {
+          return this.$flash.$emit('msg')
+        }, 500)
       }
     }
   }

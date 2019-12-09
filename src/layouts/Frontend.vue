@@ -2,6 +2,7 @@
   <v-app light>
     <v-content>
       <section>
+        <snackbar />
         <v-parallax src="../assets/hero.jpeg" height="600">
           <v-layout
             column
@@ -106,6 +107,7 @@ import http from "../../http-common"
 import Posts from '../components/Posts'
 import WhoAm from '../components/WhoAm'
 import ContactInfo from '../components/ContactInfo'
+import snackbar from '../components/Snackbar'
 
 export default {
   name: 'Welcome',
@@ -113,14 +115,14 @@ export default {
   components: {
     Posts,
     WhoAm,
-    ContactInfo
+    ContactInfo,
+    snackbar
   },
-
   data: () => {
     return {
       title: 'Sébastien guérisseur',
       titles: [],
-      post: []
+      post: [],
     }
   },
   mounted() {
@@ -129,10 +131,7 @@ export default {
     .then(response => {
       this.titles = response.data
       }
-    )
-    // .catch(error => {
-    //   console.log(error)
-    // })
+    )    
   }
 };
 </script>

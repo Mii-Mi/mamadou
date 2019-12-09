@@ -139,6 +139,7 @@
 
 <script>
   import axios from '../../http-common'
+  // import { ADD_MSG } from '../store/actions/flash'
 
   export default {
     data: () => ({
@@ -174,7 +175,14 @@
       update() {
         axios
           .put(`/articles/${this.info.id}`, this.postBody)
-          .then(() => {this.$router.push('/')})
+          .then((resp) => {
+            // this.$store.dispatch(ADD_MSG, resp.data.msg)
+            localStorage.setItem('msg', resp.data.msg)
+            setTimeout(() => {
+              return this.$flash.$emit('msg')
+            }, 500)
+            this.$router.push('/')
+          })
       }
     },
     mounted() {

@@ -16,7 +16,6 @@ const actions = {
     apiCall({url: '/admin/profile'})
       .then(resp => {
         commit(USER_SUCCESS, resp)
-        console.log(resp)
         const profile = {...resp.data}
         localStorage.setItem('profile', JSON.stringify(profile)) // store the profile in localstorage
       })

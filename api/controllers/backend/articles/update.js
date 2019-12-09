@@ -19,7 +19,7 @@ module.exports = async(req, res, next) => {
       (err, resp) => {
         if (err) return next(err)
 
-        if (index === fields.length - 1) return res.status(201).send({ msg: 'Modifié !' });
+        if (index === fields.length - 1) return res.status(201).send({ msg: 'Article Modifié !' });
       }
     )
   })

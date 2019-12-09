@@ -16,7 +16,7 @@ module.exports = (request, response, next) => {
       if (err) { return next(err) };
       if (!res.rows.length) {
         return response.status(401).send({
-          msg: 'Username or password is incorrect!'
+          msg: 'Utilisateur ou mot de passe incorrect!'
         });
       }
       // check password
@@ -26,10 +26,10 @@ module.exports = (request, response, next) => {
         (bErr, bResult) => {
           // wrong password
           if (bErr) {
-            throw bErr;
-            return response.status(401).send({
-              msg: 'Username or password is incorrect!'
+            response.status(401).send({
+              msg: 'Utilisateur ou mot de passe incorrect!'
             });
+            throw bErr;
           }
           if (bResult) {
             const token = jwt.sign({
@@ -56,13 +56,13 @@ module.exports = (request, response, next) => {
             }
 
             return response.status(200).send({
-              msg: 'Logged in!',
+              msg: 'Connexion réussie !',
               token,
               user: res.rows[0]
             });
           }
           return response.status(401).send({
-            msg: 'Username or password is incorrect!'
+            msg: 'Utilisateur ou mot de passe incorrect!'
           });
         }
       );

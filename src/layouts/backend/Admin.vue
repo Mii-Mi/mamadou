@@ -1,5 +1,6 @@
 <template>
   <v-app id="inspire">
+    <snackbar />
     <v-navigation-drawer
       class="grey lighten-3"
       v-model="drawer"
@@ -28,7 +29,6 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-
     <v-app-bar
       app
       color="cyan"
@@ -66,6 +66,7 @@
   import axios from '../../../http-common'
   import {AUTH_LOGOUT} from '../../store/actions/auth'
   import home from '../../pages/Home'
+  import snackbar from '../../components/Snackbar'
 
   export default {
 
@@ -78,21 +79,20 @@
       drawer: null,
     }),
     components: {
-      home
+      home,
+      snackbar
     },
-    beforeMount () {
+    beforeCreate () {
       axios.interceptors.response.use(response => {
         return response;
       },
       error => {
         if (error.response.status === 401) {
-          this.$store.dispatch(AUTH_LOGOUT).then(() => {
-            this.$router.push('/')
-            }
-          )
+          this.$router.push('/')
+          this.$store.dispatch(AUTH_LOGOUT)
         }
         return error;
-        }
+        },
       )
     }
   }

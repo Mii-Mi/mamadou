@@ -4,7 +4,6 @@ import { USER_REQUEST } from '../actions/user'
 import { AUTH_LOGOUT } from '../actions/auth'
 import axios from '../../../http-common'
 
-
 const state = { 
   token: localStorage.getItem('user-token') || '',
   status: ''
@@ -21,6 +20,7 @@ const actions = {
       commit(AUTH_REQUEST)
       axios({url: '/admin/login', data: user, method: 'POST'})
         .then(resp => {
+          localStorage.setItem('msg', resp.data.msg)
           const token = resp.data.token
           localStorage.setItem('user-token', token) // store the token in localstorage
           axios.defaults.headers.common['Authorization'] = token
@@ -29,21 +29,22 @@ const actions = {
           dispatch(USER_REQUEST)
           resolve(resp)
         })
-      .catch(err => {
-        commit(AUTH_ERROR, err)
-        localStorage.removeItem('user-token') // if the request fails, remove any possible user token if possible
-        reject(err)
+        .catch(err => {
+          commit(AUTH_ERROR, err)
+          localStorage.setItem('msg', 'Utilisateur ou mot de passe incorrect !')
+          localStorage.removeItem('user-token') // if the request fails, remove any possible user token if possible
+          reject(err)
+        })
       })
-    })
-  },
-  [AUTH_LOGOUT]: ({dispatch}) => {
-    return new Promise((resolve) => {
-      dispatch(AUTH_LOGOUT)
-      localStorage.removeItem('user-token') // clear your user's token from localstorage
-      resolve()
-    })
+    },
+    [AUTH_LOGOUT]: ({dispatch}) => {
+      return new Promise((resolve) => {
+        dispatch(AUTH_LOGOUT)
+        localStorage.removeItem('user-token') // clear your user's token from localstorage
+        resolve()
+      })
+    },
   }
-}
 
 const mutations = {
   [AUTH_REQUEST]: (state) => {

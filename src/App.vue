@@ -1,20 +1,25 @@
 <template>
    <div>
+     <!-- <snackbar /> -->
      <router-view />
    </div>
 </template>
 
 <script>
+import store from './store/Store'
+// import snackbar from './components/Snackbar'
 
 export default {
+  store: store,
   name: 'App',
 
-  components: {
-  },
+  // components: {
+  //   snackbar
+  // },
 
-  data: () => {
-    return {
-    }
-  },
+  // data: () => {
+  //   return {
+  //   }
+  // },
 };
 </script>
