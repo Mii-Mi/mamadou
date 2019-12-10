@@ -16,7 +16,7 @@ module.exports = (request, response, next) => {
       if (err) { return next(err) };
       if (!res.rows.length) {
         return response.status(401).send({
-          msg: 'Utilisateur ou mot de passe incorrect!'
+          msg: 'Utilisateur ou mot de passe incorrect !'
         });
       }
       // check password
@@ -27,7 +27,7 @@ module.exports = (request, response, next) => {
           // wrong password
           if (bErr) {
             response.status(401).send({
-              msg: 'Utilisateur ou mot de passe incorrect!'
+              msg: 'Utilisateur ou mot de passe incorrect !'
             });
             throw bErr;
           }
@@ -62,7 +62,7 @@ module.exports = (request, response, next) => {
             });
           }
           return response.status(401).send({
-            msg: 'Utilisateur ou mot de passe incorrect!'
+            msg: 'Utilisateur ou mot de passe incorrect !'
           });
         }
       );

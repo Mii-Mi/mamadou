@@ -20,7 +20,7 @@ const actions = {
       commit(AUTH_REQUEST)
       axios({url: '/admin/login', data: user, method: 'POST'})
         .then(resp => {
-          localStorage.setItem('msg', resp.data.msg)
+          localStorage.setItem('msg', JSON.stringify(resp.data.msg))
           const token = resp.data.token
           localStorage.setItem('user-token', token) // store the token in localstorage
           axios.defaults.headers.common['Authorization'] = token
@@ -31,7 +31,7 @@ const actions = {
         })
         .catch(err => {
           commit(AUTH_ERROR, err)
-          localStorage.setItem('msg', 'Utilisateur ou mot de passe incorrect !')
+          localStorage.setItem('msg', JSON.stringify(err.response.data.msg))
           localStorage.removeItem('user-token') // if the request fails, remove any possible user token if possible
           reject(err)
         })

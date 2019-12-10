@@ -81,12 +81,12 @@
     methods: {
       login: function () {
         const { userName, pass } = this.postBody
+        setTimeout(() => {
+          this.$flash.$emit('msg')
+        }, 1000)
         this.$store.dispatch(AUTH_REQUEST, { userName, pass }).then(() => {
           this.$router.push('/admin')
         })
-        setTimeout(() => {
-          return this.$flash.$emit('msg')
-        }, 500)
       }
     }
   }

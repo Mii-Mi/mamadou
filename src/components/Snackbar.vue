@@ -5,7 +5,7 @@
       :timeout="timeout"
       :top="top"
     >
-      {{ getMsg }}
+      {{ msg }}
       <v-btn
         color="cyan"
         text
@@ -25,6 +25,7 @@
       snackbar: false,
       timeout: 3000,
       top:'top',
+      msg:''
     }),
     computed: {
       getMsg: function () {
@@ -39,18 +40,20 @@
       },
 
       show () {
-        this.snackbar = true
+        this.msg = this.getMsg
+        if (this.msg) {
+          this.snackbar = true
+        }
       }
     },
-    beforeMount () {
-      if (this.getMsg) {
+    mounted () {
         this.$flash.$on('msg', this.show)
-      }
-      
     },
     updated () {
       this.kill()
+      },
+    beforeDestroy () {
       this.$flash.$off('msg')
-    },
+    }
   }
 </script>
