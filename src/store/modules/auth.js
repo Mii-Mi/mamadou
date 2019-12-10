@@ -44,6 +44,13 @@ const actions = {
         resolve()
       })
     },
+    [AUTH_LOGOUT]: ({commit}) => {
+      return new Promise((resolve) => {
+        commit(AUTH_LOGOUT)
+        localStorage.removeItem('user-token') // clear your user's token from localstorage
+        resolve()
+      })
+    }
   }
 
 const mutations = {

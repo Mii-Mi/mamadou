@@ -86,7 +86,7 @@
             <div class="white--text ml-4">
               Propulsé avec
               <v-icon class="red--text">mdi-heart</v-icon>
-              par <a class="white--text" href="" target="_blank">Cécile</a>
+              par <a class="white--text" href="">Cécile</a>
             </div>
           </v-flex>
         </v-layout>

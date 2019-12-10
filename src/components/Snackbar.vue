@@ -47,7 +47,7 @@
       }
     },
     mounted () {
-        this.$flash.$on('msg', this.show)
+      this.$flash.$on('msg', this.show)
     },
     updated () {
       this.kill()

@@ -1,34 +1,7 @@
 <template>
   <v-app id="inspire">
     <snackbar />
-    <v-navigation-drawer
-      class="grey lighten-3"
-      v-model="drawer"
-      app
-      right
-    >
-      <v-list dense>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-home</v-icon>
-          </v-list-item-action>
-
-          <v-list-item-content>
-            <v-list-item-title>Home</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
-          </v-list-item-action>
-
-          <v-list-item-content>
-            <v-list-item-title>Contact</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+    <side-nav />
     <v-app-bar
       app
       color="cyan"
@@ -36,7 +9,7 @@
     >
       <v-spacer />
 
-      <v-toolbar-title>Application</v-toolbar-title>
+      <v-toolbar-title>Administration</v-toolbar-title>
 
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
     </v-app-bar>
@@ -67,20 +40,16 @@
   import {AUTH_LOGOUT} from '../../store/actions/auth'
   import home from '../../pages/Home'
   import snackbar from '../../components/Snackbar'
+  import sideNav from '../../components/SideNav'
 
   export default {
 
     name: 'Admin',
 
-    props: {
-
-    },
-    data: () => ({
-      drawer: null,
-    }),
     components: {
       home,
-      snackbar
+      snackbar,
+      sideNav
     },
     beforeCreate () {
       axios.interceptors.response.use(response => {

@@ -176,7 +176,6 @@
         axios
           .put(`/articles/${this.info.id}`, this.postBody)
           .then((resp) => {
-            // this.$store.dispatch(ADD_MSG, resp.data.msg)
             localStorage.setItem('msg', resp.data.msg)
             setTimeout(() => {
               return this.$flash.$emit('msg')
