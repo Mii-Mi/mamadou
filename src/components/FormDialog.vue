@@ -22,7 +22,29 @@
                       :rules="iconRules"
                       label="Icone"
                       required
-                    ></v-text-field>
+                    >
+                      <template v-slot:append-outer>
+                        <v-menu
+                          style="top: -12px"
+                          offset-y
+                        >
+                          <template v-slot:activator="{ on }">
+                            <v-btn v-on="on" text icon color="blue">
+                              <v-icon>fas fa-info-circle</v-icon>
+                            </v-btn>
+                          </template>
+                          <v-card>
+                            <v-card-text class="pa-6">
+                              <p>Recopiez le code "fas fa-chouette-icone" <strong>(sans les balises !)</strong> donné au dessus de l'icone choisie.</p>
+                              <v-btn href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank" dark color="cyan">
+                                <v-icon left>mdi-target</v-icon>
+                                Choisir
+                                </v-btn>
+                            </v-card-text>
+                          </v-card>
+                        </v-menu>
+                      </template>
+                    </v-text-field>
                   </v-col>
                 </v-row>
                 <v-row v-if="info.title">
@@ -130,7 +152,7 @@
                 <v-btn type="submit" color="cyan" dark @click.stop="show = false">Envoyer</v-btn>
               </v-card-actions>
             </v-form>
-          <small>*indique un champs requis</small>
+          <small>Tous les champs sont requis</small>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -139,7 +161,6 @@
 
 <script>
   import axios from '../../http-common'
-  // import { ADD_MSG } from '../store/actions/flash'
 
   export default {
     data: () => ({
