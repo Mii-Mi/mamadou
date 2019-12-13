@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <snackbar />
-    <side-nav />
+    <side-nav v-model="drawer"/>
     <v-app-bar
       app
       color="cyan"
@@ -45,6 +45,10 @@
   export default {
 
     name: 'Admin',
+    
+    data: () => ({
+      drawer: null,
+    }),
 
     components: {
       home,

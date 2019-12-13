@@ -3,7 +3,7 @@ const { Router } = require('express'),
 
 const userMiddleware = require('../middlewares/user')
 
-const update = require('../controllers/backend/articles/update')
+const update = require('../controllers/backend/articles/update'),
       get = require('../controllers/frontend/articles/get')
 
 router.get('/contact', get.contact)

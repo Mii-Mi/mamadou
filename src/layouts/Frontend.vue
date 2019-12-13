@@ -3,6 +3,7 @@
     <v-content>
       <section>
         <snackbar />
+        <form-contact v-model="dialog" />
         <v-parallax src="../assets/hero.jpeg" height="600">
           <v-layout
             column
@@ -18,7 +19,7 @@
               color="blue lighten-2"
               dark
               large
-              href=""
+              @click.stop="dialog=true"
             >
               Me contacter
             </v-btn>
@@ -63,7 +64,6 @@
               color="blue lighten-2"
               dark
               large
-              href=""
             >
               Me contacter
             </v-btn>
@@ -93,7 +93,7 @@
         <v-layout row wrap align-center>
           <v-flex xs12>
             <div class="white--text ml-4 text-right">
-              <a class="white--text" href="https://lab.cecile.cf/#/admin">admin</a>
+              <a class="white--text" @click="admin()">admin</a>
             </div>
           </v-flex>
         </v-layout>
@@ -104,25 +104,33 @@
 
 <script>
 import http from "../../http-common"
+import Snackbar from '../components/Snackbar'
 import Posts from '../components/Posts'
 import WhoAm from '../components/WhoAm'
 import ContactInfo from '../components/ContactInfo'
-import snackbar from '../components/Snackbar'
+import FormContact from '../components/FormContact'
 
 export default {
   name: 'Welcome',
 
   components: {
+    Snackbar,
     Posts,
     WhoAm,
     ContactInfo,
-    snackbar
+    FormContact,
   },
   data: () => {
     return {
       title: 'Sébastien guérisseur',
       titles: [],
       post: [],
+      dialog: false
+    }
+  },
+  methods: {
+    admin() {
+      this.$router.push('/admin')
     }
   },
   mounted() {

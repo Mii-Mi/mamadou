@@ -1,18 +1,18 @@
 <template>
   <v-navigation-drawer
+      v-model="show"
       class="grey lighten-3"
-      v-model="drawer"
       app
       right
     >
       <v-list dense>
-        <v-list-item link>
+        <v-list-item link @click="home()">
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
 
           <v-list-item-content>
-            <v-list-item-title>Home</v-list-item-title>
+            <v-list-item-title>Accueil</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
@@ -44,10 +44,23 @@ import axios from '../../http-common'
 import {AUTH_LOGOUT} from '../store/actions/auth'
 
 export default {
-  data: () => ({
-    drawer: null,
-  }),
+  props: {
+    value: Boolean,
+  },
+  computed: {
+    show: {
+      get () {
+        return this.value
+      },
+      set (value) {
+        this.$emit('input', value)
+      }
+    }
+  },
   methods: {
+    home() {
+      this.$router.push('/')
+    },
     logout() {
       axios
         .delete(`/admin/logout`)

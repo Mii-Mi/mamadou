@@ -35,10 +35,10 @@ module.exports = (req, res, next) => {
               addUser,
               (err, result) => {
                 if (err) {
-                  throw err;
-                  return res.status(400).send({
+                  res.status(400).send({
                     msg: err
                   });
+                  throw err;
                 }
                 return res.status(201).send({
                   msg: 'Registered!'

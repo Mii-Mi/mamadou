@@ -28,9 +28,10 @@
       msg:''
     }),
     computed: {
-      getMsg: function () {
-        return localStorage.getItem('msg')
-      }
+      // getMsg: function () {
+      //   console.log(localStorage.getItem('msg'))
+      //   return localStorage.getItem('msg')
+      // }
       
     },
     methods: {
@@ -40,7 +41,7 @@
       },
 
       show () {
-        this.msg = this.getMsg
+        this.msg = localStorage.getItem('msg')
         if (this.msg) {
           this.snackbar = true
         }
