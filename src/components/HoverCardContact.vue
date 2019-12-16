@@ -83,7 +83,7 @@ export default {
   components: {
     formDialog
   },
-  mounted() {
+  created() {
     axios
     .get(`/admin/articles/contact`)
     .then(response => {

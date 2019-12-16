@@ -39,6 +39,16 @@ export default new VueRouter({
       path: '/admin',
       component: () => import('../layouts/backend/Admin'),
       beforeEnter: ifAuthenticated,
+      children: [
+        {
+          path: '',
+          component: () => import('../pages/Home')
+        },
+        {
+          path: 'messages',
+          component: () => import('../pages/Messages')
+        },
+      ]
     }
   ],
   // mode: "history"

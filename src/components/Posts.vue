@@ -27,7 +27,7 @@ export default {
       info: [],
     }
   },
-  mounted() {
+  created() {
     this.position = this.place
     axios
     .get(`/articles/${this.position}`)

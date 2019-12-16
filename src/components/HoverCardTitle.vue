@@ -55,7 +55,7 @@ export default {
   components:{
     formDialog
   },
-  mounted() {
+  created() {
     this.position = this.place
     axios
     .get(`/admin/articles/titles/${this.position}`)

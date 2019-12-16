@@ -42,6 +42,7 @@
                     prepend-icon="fas fa-lock"
                     type="password"
                   />
+                  <v-btn color="primary" text @click.stop="dismiss()">Quitter</v-btn>
                   <v-btn color="primary" type="submit">Connexion</v-btn>
                 </v-form>
                 <v-list-item v-if="errors && errors.length">
@@ -87,6 +88,9 @@
         this.$store.dispatch(AUTH_REQUEST, { userName, pass }).then(() => {
           this.$router.push('/admin')
         })
+      },
+      dismiss() {
+        this.$router.push('/')
       }
     }
   }

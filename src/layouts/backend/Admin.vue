@@ -16,7 +16,8 @@
 
     <v-content class="grey lighten-2">
       <!-- Here my container component -->
-      <home />
+      <router-view />
+      <!-- <home /> -->
       <!-- End of my container component -->
     </v-content>
 
@@ -38,7 +39,7 @@
 <script>
   import axios from '../../../http-common'
   import {AUTH_LOGOUT} from '../../store/actions/auth'
-  import home from '../../pages/Home'
+  // import home from '../../pages/Home'
   import snackbar from '../../components/Snackbar'
   import sideNav from '../../components/SideNav'
 
@@ -51,7 +52,7 @@
     }),
 
     components: {
-      home,
+      // home,
       snackbar,
       sideNav
     },
@@ -61,8 +62,8 @@
       },
       error => {
         if (error.response.status === 401) {
-          this.$router.push('/')
           this.$store.dispatch(AUTH_LOGOUT)
+          this.$router.push('/login')
         }
         return error;
         },

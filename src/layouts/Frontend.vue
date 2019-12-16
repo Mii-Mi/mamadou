@@ -133,7 +133,7 @@ export default {
       this.$router.push('/admin')
     }
   },
-  mounted() {
+  created() {
     http
     .get('/')
     .then(response => {

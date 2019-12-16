@@ -8,17 +8,37 @@
       <v-list dense>
         <v-list-item link @click="home()">
           <v-list-item-action>
+            <v-icon>mdi-home-export-outline</v-icon>
+          </v-list-item-action>
+
+          <v-list-item-content>
+            <v-list-item-title>Retour site</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        
+        <v-list-item link @click="adminHome()">
+          <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
 
           <v-list-item-content>
-            <v-list-item-title>Accueil</v-list-item-title>
+            <v-list-item-title>Accueil admin</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item link @click="messages()">
+          <v-list-item-action>
+            <v-icon>mdi-contact-mail</v-icon>
+          </v-list-item-action>
+
+          <v-list-item-content>
+            <v-list-item-title>Messages</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
         <v-list-item link>
           <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
+            <v-icon>mdi-contacts</v-icon>
           </v-list-item-action>
 
           <v-list-item-content>
@@ -60,6 +80,12 @@ export default {
   methods: {
     home() {
       this.$router.push('/')
+    },
+    adminHome() {
+      this.$router.push('/admin')
+    },
+    messages() {
+      this.$router.push('/admin/messages')
     },
     logout() {
       axios

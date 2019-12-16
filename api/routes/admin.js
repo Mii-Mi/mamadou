@@ -4,11 +4,12 @@ const { Router } = require('express'),
 const userMiddleware = require('../middlewares/user')
 
 const login = require('../controllers/backend/users/login'),
-      logout = require('../controllers/backend/users/logout')
+      logout = require('../controllers/backend/users/logout'),
       signup = require('../controllers/backend/users/signup'),
       titles = require('../controllers/backend/users/articles/titles'),
-      articles = require('../controllers/frontend/articles/get')
-      profile = require('../controllers/backend/users/profile')
+      articles = require('../controllers/frontend/articles/get'),
+      profile = require('../controllers/backend/users/profile'),
+      getMessages = require('../controllers/backend/messages/get')
 
 router.get('/articles/titles/:position', userMiddleware.isLoggedIn, titles)
 router.get('/articles/common/:position', userMiddleware.isLoggedIn, articles.single)
@@ -17,6 +18,7 @@ router.post('/login', login)
 router.delete('/logout', userMiddleware.isLoggedIn, logout)
 router.post('/signup', userMiddleware.validateRegister, signup)
 router.get('/profile', userMiddleware.isLoggedIn, profile)
+router.get('/messages', userMiddleware.isLoggedIn, getMessages)
 
 
 module.exports = router
