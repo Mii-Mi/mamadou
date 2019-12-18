@@ -48,6 +48,10 @@ export default new VueRouter({
           path: 'messages',
           component: () => import('../pages/Messages')
         },
+        {
+          path: 'contacts',
+          component: () => import('../pages/Contacts')
+        }
       ]
     }
   ],

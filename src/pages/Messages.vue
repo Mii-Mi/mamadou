@@ -11,7 +11,7 @@
                 v-for="(message,i) in messages"
                 :key="i"
               >
-                <v-expansion-panel-header>De {{message.author}}</v-expansion-panel-header>
+                <v-expansion-panel-header>De {{message.authorfirst}} {{message.authorlast}}, le {{message.date}}</v-expansion-panel-header>
                 <v-expansion-panel-content>
                   {{message.content}}
                 </v-expansion-panel-content>

@@ -7,15 +7,27 @@
                 dark
                 flat
               >
-                <v-toolbar-title>Contactez-moi !</v-toolbar-title>
-                <v-spacer />
-              </v-toolbar>
+            <v-toolbar-title>Contactez-moi !</v-toolbar-title>
+          <v-spacer />
+        </v-toolbar>
         <v-card-text>
             <v-form v-model="valid" @submit.prevent="send()">
               <v-container>
                 <v-row>
                   <v-col
                     cols="12"
+                    md="6"
+                  >
+                    <v-text-field
+                      v-model="postBody.userFirstName"
+                      :rules="nameRules"
+                      label="Votre prénom"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    md="6"
                   >
                     <v-text-field
                       v-model="postBody.userName"

@@ -36,7 +36,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link @click="contacts()">
           <v-list-item-action>
             <v-icon>mdi-contacts</v-icon>
           </v-list-item-action>
@@ -86,6 +86,9 @@ export default {
     },
     messages() {
       this.$router.push('/admin/messages')
+    },
+    contacts() {
+      this.$router.push('/admin/contacts')
     },
     logout() {
       axios
