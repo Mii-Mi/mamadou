@@ -9,8 +9,8 @@ module.exports = (req, res, next) => {
 
   // SAVE DATAS
   const addMsg = {
-    text: `INSERT INTO messages(author, authormail, content, created) VALUES ($1, $2, $3, $4)`,
-    values: [req.body.userName, req.body.email, req.body.content, new Date()]
+    text: `INSERT INTO messages(authorfirst, authorlast, authormail, content, created) VALUES ($1, $2, $3, $4, $5)`,
+    values: [req.body.userFirstName, req.body.userName, req.body.email, req.body.content, new Date()]
   }
 
   pool.query(
@@ -56,7 +56,7 @@ module.exports = (req, res, next) => {
           to: 'peigne.cecile@gmail.com', // list of receivers
           subject: "Mamadou: nouveau message !", // Subject line
           text: `Bonjour !\n
-          Nouveau message de ${req.body.userName} reçu sur le site "lab.cecile.cf".\n
+          Nouveau message de ${req.body.userFirstName} ${req.body.userName} reçu sur le site "lab.cecile.cf".\n
           contenu :\n
           ${req.body.content}\n
           Adresse mail du contact :\n
