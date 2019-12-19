@@ -2,7 +2,7 @@
   <v-container class="grey lighten-2">
     <v-row justify="center">
       <v-col cols="12" md="9">
-          <v-btn block color="cyan darken-2" dark>Créer contact</v-btn>
+          <v-btn block color="cyan darken-2" dark @click.stop="dialog = true">Créer contact</v-btn>
           <p></p>
           <v-card
             :elevation="2"
@@ -28,6 +28,7 @@
               </v-expansion-panel-content>
             </v-expansion-panel>
           </v-expansion-panels>
+          <form-profile v-model="dialog" />
         </v-card>
       </v-col>
     </v-row>
@@ -37,15 +38,18 @@
 <script>
 import profileCard from '../components/ProfileCard'
 import profileLogsCard from '../components/ProfileLogsCard'
+import formProfile from '../components/FormProfile'
 import axios from '../../http-common'
 
 export default {
   components: {
     profileCard,
-    profileLogsCard
+    profileLogsCard,
+    formProfile
   },
   data:() => ({
-    contacts: []
+    contacts: [],
+    dialog: false
   }),
   created() {
     axios

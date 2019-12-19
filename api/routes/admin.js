@@ -10,7 +10,8 @@ const login = require('../controllers/backend/users/login'),
       articles = require('../controllers/frontend/articles/get'),
       profile = require('../controllers/backend/users/profile'),
       getMessages = require('../controllers/backend/messages/get'),
-      getContacts = require('../controllers/backend/contacts/get')
+      getContacts = require('../controllers/backend/contacts/get'),
+      addContact = require('../controllers/backend/contacts/post')
 
 router.get('/articles/titles/:position', userMiddleware.isLoggedIn, titles)
 router.get('/articles/common/:position', userMiddleware.isLoggedIn, articles.single)
@@ -22,6 +23,7 @@ router.get('/profile', userMiddleware.isLoggedIn, profile)
 router.get('/messages', userMiddleware.isLoggedIn, getMessages)
 router.get('/contacts', userMiddleware.isLoggedIn, getContacts.list)
 router.get('/contacts/logs/:contactId', userMiddleware.isLoggedIn, getContacts.logs)
+router.post('/contacts/profile/add', userMiddleware.isLoggedIn, addContact.addProfile)
 
 
 module.exports = router

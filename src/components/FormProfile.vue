@@ -3,11 +3,11 @@
     <v-dialog v-model="show" persistent max-width="600px">
       <v-card>
         <v-toolbar
-                color="blue lighten-2"
+                color="cyan"
                 dark
                 flat
               >
-            <v-toolbar-title>Contactez-moi !</v-toolbar-title>
+            <v-toolbar-title>Nouveau contact</v-toolbar-title>
           <v-spacer />
         </v-toolbar>
         <v-card-text>
@@ -19,9 +19,9 @@
                     md="6"
                   >
                     <v-text-field
-                      v-model="postBody.userFirstName"
-                      :rules="nameRules"
-                      label="Votre prénom"
+                      v-model="postBody.firstName"
+                      :rules="requiredRules"
+                      label="Prénom *"
                       required
                     ></v-text-field>
                   </v-col>
@@ -30,10 +30,32 @@
                     md="6"
                   >
                     <v-text-field
-                      v-model="postBody.userName"
-                      :rules="nameRules"
-                      label="Votre nom"
+                      v-model="postBody.lastName"
+                      :rules="requiredRules"
+                      label="Nom *"
                       required
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col
+                    cols="12"
+                    md="6"
+                  >
+                    <v-text-field
+                      v-model="postBody.email"
+                      :rules="requiredRules"
+                      label="Courriel *"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    md="6"
+                  >
+                    <v-text-field
+                      v-model="postBody.telephone"
+                      label="Téléphone"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -42,10 +64,8 @@
                     cols="12"
                   >
                     <v-text-field
-                      v-model="postBody.email"
-                      :rules="mailRules"
-                      label="Votre Courriel"
-                      required
+                      v-model="postBody.adress"
+                      label="Adresse"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -53,24 +73,20 @@
                   <v-col
                     cols="12"
                   >
-                    <v-textarea
-                      v-model="postBody.content"
-                      filled
-                      :rules="contentRules"
-                      label="Votre message"
-                      auto-grow
-                      required
-                    ></v-textarea>
+                    <v-text-field
+                      v-model="postBody.age"
+                      label="Age"
+                    ></v-text-field>
                   </v-col>
                 </v-row>
               </v-container>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue lighten-2" text @click.stop="show = false">Quitter</v-btn>
-                <v-btn type="submit" color="blue lighten-2" dark @click.stop="show = false">Envoyer</v-btn>
+                <v-btn color="cyan" text @click.stop="show = false">Quitter</v-btn>
+                <v-btn type="submit" color="cyan" dark @click.stop="show = false">Envoyer</v-btn>
               </v-card-actions>
             </v-form>
-          <small>Tous les champs sont requis</small>
+          <small>* Champs requis</small>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -84,19 +100,16 @@
     data: () => ({
       valid: false,
       
-      nameRules: [
-        v => !!v || 'le champs nom est requis'
-      ],
-      mailRules: [
-        v => !!v || 'le champs courriel est requis'
-      ],
-      contentRules: [
-        v => !!v || 'le champs contenu est requis'
+      requiredRules: [
+        v => !!v || 'Champs requis'
       ],
       postBody: {
-        userFirstName: '',
-        userName: '',
+        firstName: '',
+        lastName: '',
         email: '',
+        telephone: null,
+        adress: null,
+        age: null,
         content: ''
       },
     }),
@@ -116,7 +129,7 @@
     methods: {
       send() {
         axios
-          .post(`/messages/add`, this.postBody)
+          .post(`/admin/contacts/profile/add`, this.postBody)
           .then(resp => {
             if (resp.data.msg) {
               localStorage.setItem('msg', JSON.parse(JSON.stringify(resp.data.msg)))

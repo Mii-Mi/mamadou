@@ -11,10 +11,13 @@
     >
       <v-toolbar-title>Suivi</v-toolbar-title>
       <v-spacer />
-        <v-btn fab small color="cyan lighten-4" @click="all" title="tout déplier">
-          <v-icon dark>mdi-chevron-double-up</v-icon>
+        <v-btn class="mx-2" small fab dark color="cyan darken-2">
+          <v-icon dark>mdi-plus</v-icon>
         </v-btn>
         <v-btn fab small color="cyan lighten-4" @click="none" title="tout refermer">
+          <v-icon dark>mdi-chevron-double-up</v-icon>
+        </v-btn>
+        <v-btn fab small color="cyan lighten-4" @click="all" title="tout déplier">
           <v-icon dark>mdi-chevron-double-down</v-icon>
         </v-btn>
     </v-toolbar>
