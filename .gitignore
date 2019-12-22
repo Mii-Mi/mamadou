@@ -24,3 +24,6 @@ yarn-error.log*
 api/config/
 api/bin/
 src/config/
+
+# Images
+api/public/Images/

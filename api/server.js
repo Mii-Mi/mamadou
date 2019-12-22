@@ -8,15 +8,16 @@ const express = require('express'),
       bodyparser = require('body-parser'),
       cors = require('cors'),
       corsConfig = require('./config/cors_config'),
-      history = require('connect-history-api-fallback')
+      history = require('connect-history-api-fallback'),
+      fileUpload = require('express-fileupload')
 
 app.use(cors({
   origin: corsConfig.origin,
   credentials: true
 }))
 
-app.use(bodyparser.json())
-app.use(bodyparser.urlencoded({extended: true}))
+app.use(bodyparser.json({limit: '500mb'}))
+app.use(bodyparser.urlencoded({extended: true, limit: '500mb'}))
 
 app.use(session({
   store: new pgSession({
@@ -32,8 +33,12 @@ app.use(session({
   }
 }))
 
+app.use(fileUpload())
+
 app.use(history({index: '/index.html'}))
 app.use(routes)
+
+app.use(express.static('public'))
 
 app.use((err, req, res, next) => {
   console.log(err)

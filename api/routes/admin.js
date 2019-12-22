@@ -24,6 +24,9 @@ router.get('/messages', userMiddleware.isLoggedIn, getMessages)
 router.get('/contacts', userMiddleware.isLoggedIn, getContacts.list)
 router.get('/contacts/logs/:contactId', userMiddleware.isLoggedIn, getContacts.logs)
 router.post('/contacts/profile/add', userMiddleware.isLoggedIn, addContact.addProfile)
+router.post('/contacts/logs/img', userMiddleware.isLoggedIn, addContact.addLogImg)
+router.post('/contacts/logs/add/:contactid', userMiddleware.isLoggedIn, addContact.addLog)
+router.get('/image/:img', getContacts.tmpImgLog)
 
 
 module.exports = router

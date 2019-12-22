@@ -11,7 +11,7 @@
     >
       <v-toolbar-title>Suivi</v-toolbar-title>
       <v-spacer />
-        <v-btn class="mx-2" small fab dark color="cyan darken-2">
+        <v-btn class="mx-2" small fab dark color="cyan darken-2" @click.stop="dialog = true">
           <v-icon dark>mdi-plus</v-icon>
         </v-btn>
         <v-btn fab small color="cyan lighten-4" @click="none" title="tout refermer">
@@ -31,28 +31,35 @@
           v-for="(log,i) in logs"
           :key="i"
         >
-          <v-expansion-panel-header>{{ log.created }}</v-expansion-panel-header>
+          <v-expansion-panel-header>{{ log.date }}</v-expansion-panel-header>
           <v-expansion-panel-content>
-            {{log.comment}}
+            <div v-html="log.comment"></div>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
     </div>
+    <form-profile-log v-model="dialog" :contactid="contactId" />
   </v-card>
 </template>
 
 <script>
 import axios from '../../http-common'
+import formProfileLog from '../components/FormProfileLog'
 
 export default {
   props: {
     contactId: Number
   },
 
+  components: {
+    formProfileLog
+  },
+
   data: () => ({
     panel: [],
     logs: [],
-    profile: null
+    profile: null,
+    dialog: false
   }),
 
   methods: {
@@ -77,3 +84,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  img{
+    max-width: 100%;
+  }
+</style>
