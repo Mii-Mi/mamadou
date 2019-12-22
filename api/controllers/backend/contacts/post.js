@@ -23,7 +23,7 @@ module.exports = {
 
     image.mv(uploadFile, (err) => {
       if (err) return next(err)
-      return res.json({url: `http://192.168.0.29:3333/admin/image/${image.name}`})
+      return res.json({url: `https://cecile.cf/admin/image/${image.name}`})
     })
   },
   addLog: (req,res, next) => {
