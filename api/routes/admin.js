@@ -11,7 +11,9 @@ const login = require('../controllers/backend/users/login'),
       profile = require('../controllers/backend/users/profile'),
       getMessages = require('../controllers/backend/messages/get'),
       getContacts = require('../controllers/backend/contacts/get'),
-      addContact = require('../controllers/backend/contacts/post')
+      addContact = require('../controllers/backend/contacts/post'),
+      putContact = require('../controllers/backend/contacts/put'),
+      delContact = require('../controllers/backend/contacts/delete')
 
 router.get('/articles/titles/:position', userMiddleware.isLoggedIn, titles)
 router.get('/articles/common/:position', userMiddleware.isLoggedIn, articles.single)
@@ -26,6 +28,8 @@ router.get('/contacts/logs/:contactId', userMiddleware.isLoggedIn, getContacts.l
 router.post('/contacts/profile/add', userMiddleware.isLoggedIn, addContact.addProfile)
 router.post('/contacts/logs/img', userMiddleware.isLoggedIn, addContact.addLogImg)
 router.post('/contacts/logs/add/:contactid', userMiddleware.isLoggedIn, addContact.addLog)
+router.put('/contacts/logs/put/:logId', userMiddleware.isLoggedIn, putContact.contactLog)
+router.delete('/contacts/logs/delete/:logId', userMiddleware.isLoggedIn, delContact.contLog)
 router.get('/image/:img', getContacts.tmpImgLog)
 
 

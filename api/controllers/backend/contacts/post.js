@@ -20,10 +20,11 @@ module.exports = {
   addLogImg: (req, res, next) => {
     const { image } = req.files;
     const uploadFile = path.resolve(__dirname, '../../../public/images/', image.name);
+    const axiosUrl = require('../../../../src/config/axios_config')
 
     image.mv(uploadFile, (err) => {
       if (err) return next(err)
-      return res.json({url: `https://cecile.cf/admin/image/${image.name}`})
+      return res.json({url: `${axiosUrl.baseUrl}/${image.name}`})
     })
   },
   addLog: (req,res, next) => {

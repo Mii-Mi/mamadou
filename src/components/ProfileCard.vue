@@ -21,20 +21,22 @@
             <v-list-item-title>âge : {{info.age}}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item>
+        <v-list-item three-line>
           <v-list-item-icon>
             <v-icon>fas fa-map-marker-alt</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>adresse : {{info.adress}}</v-list-item-title>
+            <v-list-item-title>adresse :</v-list-item-title>
+            <v-list-item-subtitle>{{info.adress}}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item>
+        <v-list-item two-line>
           <v-list-item-icon>
             <v-icon>fas fa-mail-bulk</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>courriel : {{info.email}}</v-list-item-title>
+            <v-list-item-title>courriel :</v-list-item-title>
+            <v-list-item-subtitle>{{info.email}}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
         <v-list-item>

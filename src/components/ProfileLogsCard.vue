@@ -22,20 +22,11 @@
         </v-btn>
     </v-toolbar>
     <div>
-
       <v-expansion-panels
         v-model="panel"
         multiple
       >
-        <v-expansion-panel
-          v-for="(log,i) in logs"
-          :key="i"
-        >
-          <v-expansion-panel-header>{{ log.date }}</v-expansion-panel-header>
-          <v-expansion-panel-content>
-            <div v-html="log.comment"></div>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
+        <profile-logs-panels v-for="(log, i) in logs" :key="i" :info="{ id: log.id, date: log.date, comment: log.comment }" />
       </v-expansion-panels>
     </div>
     <form-profile-log v-model="dialog" :contactid="contactId" />
@@ -44,7 +35,8 @@
 
 <script>
 import axios from '../../http-common'
-import formProfileLog from '../components/FormProfileLog'
+import formProfileLog from './FormProfileLog'
+import profileLogsPanels from './ProfileLogsPanels'
 
 export default {
   props: {
@@ -52,14 +44,15 @@ export default {
   },
 
   components: {
-    formProfileLog
+    formProfileLog,
+    profileLogsPanels
   },
 
   data: () => ({
     panel: [],
     logs: [],
     profile: null,
-    dialog: false
+    dialog: false,
   }),
 
   methods: {
@@ -88,5 +81,11 @@ export default {
 <style>
   img{
     max-width: 100%;
+  }
+  .rbut{
+    margin-right: 40px;
+  }
+  .lbut{
+    margin-right: 80px;
   }
 </style>
