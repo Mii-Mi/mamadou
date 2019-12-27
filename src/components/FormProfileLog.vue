@@ -17,7 +17,7 @@
                   <v-col
                     cols="12"
                   >
-                    <vue-editor id="editor" useCustomImageHandler @image-added="handleImageAdded" v-model="postBody.content" />
+                    <vue-editor id="editor" useCustomImageHandler @image-added="handleImageAdded" @image-removed="handleImageRemoved" v-model="postBody.content" />
                   </v-col>
                 </v-row>
               </v-container>
@@ -29,6 +29,7 @@
             </v-form>
           <small>* Champs requis</small>
         </v-card-text>
+        <pre>{{postBody.content}}</pre>
       </v-card>
     </v-dialog>
   </v-row>
@@ -83,6 +84,15 @@
             Editor.insertEmbed(cursorLocation, "image", url);
             resetUploader();
           })
+          .catch(err => {
+            console.log(err);
+          });
+      },
+      handleImageRemoved: function(image) {
+        axios({
+          url: image,
+          method: "DELETE",
+        })
           .catch(err => {
             console.log(err);
           });

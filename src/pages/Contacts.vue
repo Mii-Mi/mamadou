@@ -13,12 +13,31 @@
                 v-for="(contact,i) in contacts"
                 :key="i"
               >
-                <v-expansion-panel-header>{{contact.firstname}} {{contact.lastname}}</v-expansion-panel-header>
+                <v-expansion-panel-header v-slot="{ open }">
+                  <v-layout row wrap>
+                    <v-flex xs12>
+                      <div class="ml-4">
+                        {{contact.firstname}} {{contact.lastname}}
+                      </div>
+                    </v-flex>
+                  </v-layout>
+                  <v-layout row wrap align-center>
+                    <v-flex xs12>
+                      <div class="ml-4 text-right" style="padding-right: 20px">
+                        <v-fab-transition>
+                          <v-btn v-if="open" class="mx-2" small fab dark color="red darken-2" @click.stop="">
+                            <v-icon dark>mdi-delete-forever</v-icon>
+                          </v-btn>
+                        </v-fab-transition>
+                      </div>
+                    </v-flex>
+                  </v-layout>
+                </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <v-container>
                   <v-row>
                     <v-col cols="12" md="4">
-                      <profile-card :items="{age: contact.age, adress: contact.adress, email: contact.email, telephone: contact.telephone}" />
+                      <profile-card :items="{id: contact.id, firstName: contact.firstname, lastName: contact.lastname, age: contact.age, adress: contact.adress, email: contact.email, telephone: contact.telephone}" />
                     </v-col>
                     <v-col cols="12" md="8">
                       <profile-logs-card :contactId="contact.id" />

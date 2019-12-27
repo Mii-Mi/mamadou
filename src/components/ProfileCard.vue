@@ -10,6 +10,9 @@
   >
     <v-toolbar-title>Profil</v-toolbar-title>
     <v-spacer />
+    <v-btn class="mx-2" small fab dark color="cyan" @click.stop="dialog = true">
+      <v-icon dark>mdi-pencil</v-icon>
+    </v-btn>
   </v-toolbar>
     <v-list disabled>
       <v-list-item-group color="primary">
@@ -49,18 +52,25 @@
         </v-list-item>
       </v-list-item-group>
     </v-list>
+    <form-profile-edit v-model="dialog" :val="{ id:info.id, firstName:info.firstName, lastName:info.lastName, age:info.age, adress:info.adress, email:info.email, telephone:info.telephone }" />
   </v-card>
 </template>
 
 <script>
+import formProfileEdit from './FormProfileEdit'
+
 export default {
+  components: {
+    formProfileEdit
+  },
 
   props: {
     items: Object
   },
 
   data: () => ({
-    info: {}
+    info: {},
+    dialog: false
   }),
 
   created() {

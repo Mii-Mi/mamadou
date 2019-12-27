@@ -18,14 +18,25 @@ module.exports = {
     )
   },
   addLogImg: (req, res, next) => {
+    const uuid = require('uuid')
     const { image } = req.files;
-    const uploadFile = path.resolve(__dirname, '../../../public/images/', image.name);
+    const ext = path.extname(image.name).toLowerCase()
+    const renamed = uuid.v4() + ext
+    const uploadFile = path.resolve(__dirname, '../../../public/images/', renamed);
     const axiosUrl = require('../../../../src/config/axios_config')
 
     image.mv(uploadFile, (err) => {
       if (err) return next(err)
-      return res.json({url: `${axiosUrl.baseUrl}/${image.name}`})
+      return res.json({url: `${axiosUrl.baseUrl}/admin/image/${renamed}`})
     })
+  },
+  delLogImg: (req, res, next) => {
+    const fs = require('fs'),
+          imageToDelete = `public/images/${req.params.image}`
+
+    fs.unlink(imageToDelete, function (err, result) {
+      if (err) return next(err)
+    });
   },
   addLog: (req,res, next) => {
     const postLog = {
