@@ -29,7 +29,6 @@
             </v-form>
           <small>* Champs requis</small>
         </v-card-text>
-        <pre>{{postBody.content}}</pre>
       </v-card>
     </v-dialog>
   </v-row>

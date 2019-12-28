@@ -18,13 +18,34 @@ module.exports = {
   },
   contactLog: (req, res, next) => {
     const putLog = {
-      text: `UPDATE contlogs SET comment = $1 WHERE id = $2`,
+      text: `UPDATE contlogs SET comment = $1 WHERE id = $2 RETURNING *`,
       values: [req.body.content, req.params.logId]
     }
     pool.query(
       putLog,
       (err, newCom) => {
         if (err) return next(err)
+
+        // Save images in db from body string
+        const img = /(?<=<img\ssrc=".+?\/admin\/image\/).+?\..+?(?=">+?)/g
+        const str = newCom.rows[0].comment
+        let imgs = str.match(img)
+
+        if(imgs) {
+          imgs.forEach(image => {
+            const saveImgs = {
+              text: `INSERT INTO images(imagename, contactid, logid)
+                      VALUES ($1, $2, $3)`,
+              values: [image, newCom.rows[0].contactid, newCom.rows[0].id]
+            }
+            pool.query(
+              saveImgs,
+              (err, saved) => {
+                if (err) return next(err)
+              }
+            )
+          });
+        }
         return res.status(201).send({ msg: 'Session Modifiée !' })
       }
     )

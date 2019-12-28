@@ -110,7 +110,6 @@
         telephone: null,
         adress: null,
         age: null,
-        content: ''
       },
     }),
     props: {

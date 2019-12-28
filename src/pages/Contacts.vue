@@ -25,7 +25,7 @@
                     <v-flex xs12>
                       <div class="ml-4 text-right" style="padding-right: 20px">
                         <v-fab-transition>
-                          <v-btn v-if="open" class="mx-2" small fab dark color="red darken-2" @click.stop="">
+                          <v-btn v-if="open" class="mx-2" small fab dark color="red darken-2" @click.stop="del(contact.id)">
                             <v-icon dark>mdi-delete-forever</v-icon>
                           </v-btn>
                         </v-fab-transition>
@@ -70,6 +70,26 @@ export default {
     contacts: [],
     dialog: false
   }),
+  methods: {
+    del(id) {
+      axios
+      .delete(`/admin/contacts/${id}`)
+      .then(resp => {
+        if (resp.data.msg) {
+          localStorage.setItem('msg', JSON.parse(JSON.stringify(resp.data.msg)))
+        }
+      })
+      .catch(error => {
+        if (error.response.data.msg) {
+          localStorage.setItem('msg', JSON.parse(JSON.stringify(error.response.data.msg)))
+        }
+      }).finally(() => {
+        setTimeout(() => {
+          return this.$flash.$emit('msg')
+        }, 500)
+      })
+    }
+  },
   created() {
     axios
     .get('/admin/contacts')

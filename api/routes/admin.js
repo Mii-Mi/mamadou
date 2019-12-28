@@ -32,6 +32,7 @@ router.delete('/image/:image', userMiddleware.isLoggedIn, addContact.delLogImg)
 router.post('/contacts/logs/add/:contactid', userMiddleware.isLoggedIn, addContact.addLog)
 router.put('/contacts/logs/put/:logId', userMiddleware.isLoggedIn, putContact.contactLog)
 router.delete('/contacts/logs/delete/:logId', userMiddleware.isLoggedIn, delContact.contLog)
+router.delete('/contacts/:contactId', userMiddleware.isLoggedIn, delContact.contact)
 router.get('/image/:img', getContacts.tmpImgLog)
 
 

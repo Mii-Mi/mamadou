@@ -3,6 +3,9 @@ const pool = require('../../../db/index'),
 
 module.exports = {
   addProfile: (req, res, next) => {
+    if(!req.body.telephone) req.body.telephone = 'Non communiqué'
+    if(!req.body.adress) req.body.adress = 'Non communiqué'
+    if(!req.body.age) req.body.age = 0
     const newProfile = {
       text: `INSERT INTO contacts(firstname, lastname, email, telephone, adress, age) 
               VALUES ($1, $2, $3, $4, $5, $6)`,
@@ -34,6 +37,26 @@ module.exports = {
     const fs = require('fs'),
           imageToDelete = `public/images/${req.params.image}`
 
+    // verify if image is in db, then delete
+    const getImg = {
+      text: `SELECT * FROM images WHERE imagename = $1`,
+      values: [req.params.image]
+    }
+    pool.query(
+      getImg,
+      (err, img) => {
+        if (err) return next(err)
+        if (img) {
+          pool.query(
+            `DELETE FROM images WHERE imagename = $1`,
+            [img.rows[0].imagename],
+            (err, del) => {
+              if (err) return next(err)
+            }
+          )
+        }
+      }
+    )
     fs.unlink(imageToDelete, function (err, result) {
       if (err) return next(err)
     });
@@ -41,13 +64,35 @@ module.exports = {
   addLog: (req,res, next) => {
     const postLog = {
       text: `INSERT INTO contlogs(contactid, comment)
-              VALUES ($1, $2)`,
+              VALUES ($1, $2)
+              RETURNING *`,
       values: [req.params.contactid, req.body.content]
     }
     pool.query(
       postLog,
       (err, newLog) => {
         if (err) return next(err)
+
+        // Save images in db from body string
+        const img = /(?<=<img\ssrc=".+?\/admin\/image\/).+?\..+?(?=">+?)/g
+        const str = newLog.rows[0].comment
+        let imgs = str.match(img)
+
+        if(imgs) {
+          imgs.forEach(image => {
+            const saveImgs = {
+              text: `INSERT INTO images(imagename, contactid, logid)
+                      VALUES ($1, $2, $3)`,
+              values: [image, newLog.rows[0].contactid, newLog.rows[0].id]
+            }
+            pool.query(
+              saveImgs,
+              (err, saved) => {
+                if (err) return next(err)
+              }
+            )
+          });
+        }
         return res.status(201).send({msg: 'Suivi ajouté !'})
       }
     )
