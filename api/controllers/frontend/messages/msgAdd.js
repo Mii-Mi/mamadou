@@ -75,7 +75,6 @@ module.exports = (req, res, next) => {
           });
           return next(error)
          }
-        console.log(info)
         return res.status(201).send({msg: 'Message envoyé !'})
       })
     }

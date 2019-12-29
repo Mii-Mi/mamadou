@@ -16,7 +16,7 @@ module.exports = {
   },
   logs: (req, res, next) => {
     const getlogs = {
-      text: `SELECT *, to_char(created, 'dd/mm/yyyy - HH24h MI') date FROM contlogs WHERE contactid = $1 ORDER BY created DESC`,
+      text: `SELECT *, to_char(created, 'dd/mm/yyyy - HH24hMI') date FROM contlogs WHERE contactid = $1 ORDER BY created DESC`,
       values: [req.params.contactId]
     }
     pool.query(
