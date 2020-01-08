@@ -11,7 +11,7 @@
             justify-center
             class="white--text"
           >
-            <img src="../assets/amazonite1.png" alt="amazonite.png" height="200">
+            <img src="../assets/labradorite.png" alt="labradorite.png" height="200">
             <h1 class="blue-grey--text text--darken-4 mb-2 display-1 text-center">{{ title }}</h1>
             <div class="subheading mb-4 text-center blue-grey--text text--darken-4">Magnétiseur, rebouteux ... et hypnose</div>
             <v-btn
