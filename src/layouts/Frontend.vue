@@ -12,11 +12,11 @@
             class="white--text"
           >
             <img src="../assets/amazonite1.png" alt="amazonite.png" height="200">
-            <h1 class="white--text mb-2 display-1 text-center">{{ title }}</h1>
-            <div class="subheading mb-4 text-center">gri-gri, marabout, retour de l'amour</div>
+            <h1 class="blue-grey--text text--darken-4 mb-2 display-1 text-center">{{ title }}</h1>
+            <div class="subheading mb-4 text-center blue-grey--text text--darken-4">Magnétiseur, rebouteux ... et hypnose</div>
             <v-btn
               class="mt-12"
-              color="blue lighten-2"
+              color="light-green darken-4"
               dark
               large
               @click.stop="dialog=true"
@@ -57,11 +57,11 @@
       <section>
         <v-parallax src="../assets/foretdebrocliande2.jpg" height="380">
           <v-layout column align-center justify-center>
-            <div v-if="titles[1]" class="headline white--text mb-4 text-center">{{ titles[1].big }}</div>
-            <em v-if="titles[1]">{{ titles[1].small }}</em>
+            <div v-if="titles[1]" class="headline teal--text text--darken-4 mb-4 text-center">{{ titles[1].big }}</div>
+            <em v-if="titles[1]" class="teal--text text--darken-4">{{ titles[1].small }}</em>
             <v-btn
               class="mt-12"
-              color="blue lighten-2"
+              color="light-green darken-4"
               dark
               large
             >
@@ -122,7 +122,7 @@ export default {
   },
   data: () => {
     return {
-      title: 'Sébastien guérisseur',
+      title: 'Seb et ses bienfaits',
       titles: [],
       post: [],
       dialog: false
@@ -143,3 +143,9 @@ export default {
   }
 };
 </script>
+
+<style>
+  h1, .subheading {
+    text-shadow: 2px 2px 3px white
+  }
+</style>

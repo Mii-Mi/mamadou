@@ -2,7 +2,7 @@
   <v-flex xs12 md4>
     <v-card flat class="transparent">
       <v-card-text class="text-center">
-        <v-icon x-large class="blue--text text--lighten-2" v-if="info[0]">{{ info[0].icon }}</v-icon>
+        <v-icon x-large class="light-green--text text--darken-4" v-if="info[0]">{{ info[0].icon }}</v-icon>
       </v-card-text>
       <v-card-title primary-title class="layout justify-center">
         <div class="headline text-center" v-if="info[0]">{{ info[0].title }}</div>
