@@ -55,7 +55,7 @@
       </section>
 
       <section>
-        <v-parallax src="../assets/foretdebrocliande.jpg" height="380">
+        <v-parallax src="../assets/foretdebrocliande2.jpg" height="380">
           <v-layout column align-center justify-center>
             <div v-if="titles[1]" class="headline white--text mb-4 text-center">{{ titles[1].big }}</div>
             <em v-if="titles[1]">{{ titles[1].small }}</em>
