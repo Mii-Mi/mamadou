@@ -4,7 +4,7 @@
       <section>
         <snackbar />
         <form-contact v-model="dialog" />
-        <v-parallax src="../assets/hero.jpeg" height="600">
+        <v-parallax src="../assets/foretdebrocliande1.jpg" height="600">
           <v-layout
             column
             align-center
@@ -55,7 +55,7 @@
       </section>
 
       <section>
-        <v-parallax src="../assets/section.jpg" height="380">
+        <v-parallax src="../assets/foretdebrocliande.jpg" height="380">
           <v-layout column align-center justify-center>
             <div v-if="titles[1]" class="headline white--text mb-4 text-center">{{ titles[1].big }}</div>
             <em v-if="titles[1]">{{ titles[1].small }}</em>
@@ -80,7 +80,7 @@
         </v-container>
       </section>
 
-      <v-footer color="orange darken-2">
+      <v-footer color="light-green darken-1">
         <v-layout row wrap align-center>
           <v-flex xs12>
             <div class="white--text ml-4">

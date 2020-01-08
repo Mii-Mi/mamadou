@@ -62,7 +62,7 @@ module.exports = (req, res, next) => {
           Adresse mail du contact :\n
           ${req.body.email}`, // plain text body
           html: `<h1>Bonjour !</h1>
-          <p>Nouveau message de ${req.body.userName} reçu sur le site "lab.cecile.cf".</p>
+          <p>Nouveau message de ${req.body.userFirstName} ${req.body.userName} reçu sur le site "lab.cecile.cf".</p>
           <h2>contenu :</h2>
           <p>${req.body.content}</p>
           <h3>Adresse mail du contact</h3>
