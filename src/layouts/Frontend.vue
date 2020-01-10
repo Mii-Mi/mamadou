@@ -12,8 +12,8 @@
             class="white--text"
           >
             <img src="../assets/labradorite.png" alt="labradorite.png" height="200">
-            <h1 class="blue-grey--text text--darken-4 mb-2 display-1 text-center">{{ title }}</h1>
-            <div class="subheading mb-4 text-center blue-grey--text text--darken-4">Magnétiseur, rebouteux ... et hypnose</div>
+            <h1 class="blue-grey--text text--darken-4 mb-2 display-2 text-center">{{ title }}</h1>
+            <div class="sub1 subheading mb-4 text-center blue-grey--text text--darken-4">Magnétiseur, rebouteux ... et hypnose</div>
             <v-btn
               class="mt-12"
               color="light-green darken-4"
@@ -21,7 +21,7 @@
               large
               @click.stop="dialog=true"
             >
-              Me contacter
+              Contactez-moi !
             </v-btn>
           </v-layout>
         </v-parallax>
@@ -65,7 +65,7 @@
               dark
               large
             >
-              Me contacter
+              Exprimez-vous !
             </v-btn>
           </v-layout>
         </v-parallax>
@@ -145,7 +145,10 @@ export default {
 </script>
 
 <style>
-  h1, .subheading {
+  h1, .sub1 {
     text-shadow: 2px 2px 3px white
+  }
+  .sub1 {
+    font-size: 1.2em
   }
 </style>
