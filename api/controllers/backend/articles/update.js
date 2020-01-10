@@ -3,7 +3,7 @@ const pool = require('../../../db/index')
 module.exports = async(req, res, next) => {
 
   const id = req.params.id,
-        keys = ['icon', 'title', 'big', 'small', 'topo', 'phone', 'adress', 'email', 'content'],
+        keys = ['icon', 'title', 'big', 'small', 'topo', 'phone', 'adress', 'email', 'fblink', 'content'],
         fields = [],
         table = req.body.type
 

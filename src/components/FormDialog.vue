@@ -131,6 +131,18 @@
                     ></v-text-field>
                   </v-col>
                 </v-row>
+                <v-row v-if="info.fblink">
+                  <v-col
+                    cols="12"
+                  >
+                    <v-text-field
+                      v-model="postBody.fblink"
+                      :rules="titleRules"
+                      label="Lien facebook"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
                 <v-row v-if="info.content">
                   <v-col
                     cols="12"

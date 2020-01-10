@@ -32,6 +32,14 @@
             <v-list-item-title v-if="info[0]">{{ info[0].email }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item>
+          <v-list-item-action>
+            <v-icon class="light-green--text text--darken-4">mdi-facebook-box</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title v-if="info[0]">{{ info[0].fblink }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-card>
   </v-flex>

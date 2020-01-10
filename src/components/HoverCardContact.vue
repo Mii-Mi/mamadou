@@ -41,6 +41,14 @@
               <v-list-item-title v-if="info[0]">{{ info[0].email }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item>
+            <v-list-item-action>
+              <v-icon class="blue--text text--lighten-2">mdi-facebook-box</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title v-if="info[0]">{{ info[0].fblink }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
         <v-fab-transition>
           <v-btn
@@ -57,7 +65,7 @@
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
         </v-fab-transition>
-        <form-dialog v-if="info[0]" v-model="dialog" :item="{id: info[0].id, topo: info[0].topo, phone: info[0].phone, adress: info[0].adress, email: info[0].email, type: 'contactpost'}" />
+        <form-dialog v-if="info[0]" v-model="dialog" :item="{id: info[0].id, topo: info[0].topo, phone: info[0].phone, adress: info[0].adress, email: info[0].email, fblink: info[0].fblink ,type: 'contactpost'}" />
       </v-card>
     </v-hover>
   </v-col>
