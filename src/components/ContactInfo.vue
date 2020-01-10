@@ -32,7 +32,7 @@
             <v-list-item-title v-if="info[0]">{{ info[0].email }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <a :href="info[0].fblink" style="text-decoration: none">
+        <a :href="info[0].fblink" style="text-decoration: none" target="_blank">
           <v-list-item link>
             <v-list-item-action>
               <v-icon class="light-green--text text--darken-4">mdi-facebook-box</v-icon>

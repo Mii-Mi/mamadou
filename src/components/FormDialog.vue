@@ -147,14 +147,15 @@
                   <v-col
                     cols="12"
                   >
-                    <v-textarea
+                    <vue-editor id="editor" v-model="postBody.content" />
+                    <!-- <v-textarea
                       v-model="postBody.content"
                       filled
                       :rules="contentRules"
                       label="Contenu"
                       auto-grow
                       required
-                    ></v-textarea>
+                    ></v-textarea> -->
                   </v-col>
                 </v-row>
               </v-container>
@@ -173,8 +174,12 @@
 
 <script>
   import axios from '../../http-common'
+  import { VueEditor } from "vue2-editor"
 
   export default {
+    components: {
+      VueEditor
+    },
     data: () => ({
       valid: false,
       

@@ -8,7 +8,7 @@
         <div class="headline text-center" v-if="info[0]">{{ info[0].title }}</div>
       </v-card-title>
       <v-card-text>
-        <div><p v-if="info[0]">{{ info[0].content }}</p></div>
+        <div v-if="info[0]" v-html="info[0].content"></div>
       </v-card-text>
     </v-card>
   </v-flex>

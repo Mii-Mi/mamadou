@@ -6,7 +6,7 @@
       </v-card-title>
       <v-card-text v-if="info[0]">
         <div class="float-left"><img src="../assets/sebastien.jpg" alt="photo sebastien"></div>
-        <div>{{ info[0].content }}</div>
+        <div v-html="info[0].content"></div>
       </v-card-text>
     </v-card>
   </v-flex>
