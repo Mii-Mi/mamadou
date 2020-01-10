@@ -53,7 +53,7 @@ module.exports = (req, res, next) => {
 
       let mailOptions = {
           from: '"Mii-Mi" <miimi@resistance.cf>', // sender address
-          to: 'seb8579@gmail.com', // list of receivers
+          to: 'sebbourgois8579@gmail.com', // list of receivers
           subject: "Seb bienfaits : nouveau message !", // Subject line
           text: `Bonjour !\n
           Nouveau message de ${req.body.userFirstName} ${req.body.userName} reçu sur le site "sebetsesbienfaits.fr".\n
