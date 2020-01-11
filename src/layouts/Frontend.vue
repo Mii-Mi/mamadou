@@ -4,6 +4,7 @@
       <section>
         <snackbar />
         <form-contact v-model="dialog" />
+        <form-goldbook v-model="dialBook" />
         <v-parallax src="../assets/foretdebrocliande1.jpg" height="600">
           <v-layout
             column
@@ -64,6 +65,7 @@
               color="light-green darken-4"
               dark
               large
+              @click.stop="dialBook=true"
             >
               Exprimez-vous !
             </v-btn>
@@ -109,6 +111,7 @@ import Posts from '../components/Posts'
 import WhoAm from '../components/WhoAm'
 import ContactInfo from '../components/ContactInfo'
 import FormContact from '../components/FormContact'
+import FormGoldbook from '../components/FormGoldbook'
 
 export default {
   name: 'Welcome',
@@ -119,13 +122,15 @@ export default {
     WhoAm,
     ContactInfo,
     FormContact,
+    FormGoldbook
   },
   data: () => {
     return {
       title: 'Seb et ses bienfaits',
       titles: [],
       post: [],
-      dialog: false
+      dialog: false,
+      dialBook: false
     }
   },
   methods: {
