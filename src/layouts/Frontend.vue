@@ -5,7 +5,7 @@
         <snackbar />
         <form-contact v-model="dialog" />
         <form-goldbook v-model="dialBook" />
-        <v-parallax src="../assets/foretdebrocliande1.jpg" height="600">
+        <v-parallax src="../assets/bocalseb.jpg" height="600">
           <v-layout
             column
             align-center
@@ -56,7 +56,7 @@
       </section>
 
       <section>
-        <v-parallax src="../assets/foretdebrocliande2.jpg" height="380">
+        <v-parallax src="../assets/bocalseb.jpg" height="380">
           <v-layout column align-center justify-center>
             <div v-if="titles[1]" class="headline teal--text text--darken-4 mb-4 text-center">{{ titles[1].big }}</div>
             <em v-if="titles[1]" class="teal--text text--darken-4">{{ titles[1].small }}</em>
