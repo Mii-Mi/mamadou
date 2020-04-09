@@ -35,7 +35,7 @@
         <a v-if="info[0]" :href="info[0].fblink" style="text-decoration: none" target="_blank">
           <v-list-item link class="fb">
             <v-list-item-action>
-              <v-icon class="light-green--text text--darken-4">mdi-facebook-box</v-icon>
+              <v-icon class="light-green--text text--darken-4">mdi-facebook</v-icon>
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title>Ma page Facebook</v-list-item-title>

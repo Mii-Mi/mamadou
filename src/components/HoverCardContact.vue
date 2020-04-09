@@ -43,7 +43,7 @@
           </v-list-item>
           <v-list-item>
             <v-list-item-action>
-              <v-icon class="blue--text text--lighten-2">mdi-facebook-box</v-icon>
+              <v-icon class="blue--text text--lighten-2">mdi-facebook</v-icon>
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title v-if="info[0]">{{ info[0].fblink }}</v-list-item-title>

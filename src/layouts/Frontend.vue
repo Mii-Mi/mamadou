@@ -58,8 +58,8 @@
       <section>
         <v-parallax src="../assets/bocalseb.jpg" height="380">
           <v-layout column align-center justify-center>
-            <div v-if="titles[1]" class="headline teal--text text--darken-4 mb-4 text-center">{{ titles[1].big }}</div>
-            <em v-if="titles[1]" class="teal--text text--darken-4">{{ titles[1].small }}</em>
+            <div v-if="titles[1]" class="headline white--text mb-4 text-center">{{ titles[1].big }}</div>
+            <em v-if="titles[1]" class="white--text">{{ titles[1].small }}</em>
             <v-btn
               class="mt-12"
               color="light-green darken-4"

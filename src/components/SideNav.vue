@@ -28,7 +28,7 @@
 
         <v-list-item link @click="messages()">
           <v-list-item-action>
-            <v-icon>mdi-contact-mail</v-icon>
+            <v-icon>mdi-email-outline</v-icon>
           </v-list-item-action>
 
           <v-list-item-content>
