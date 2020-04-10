@@ -229,8 +229,8 @@
   }
 </script>
 
-<style>
+<!-- <style>
   .ql-image, .ql-video {
     display: none !important;
   }
-</style>
+</style> --> 
