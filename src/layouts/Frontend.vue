@@ -88,7 +88,7 @@
             <div class="white--text ml-4">
               Propulsé avec
               <v-icon class="red--text">mdi-heart</v-icon>
-              par <a class="white--text" href="">Cécile</a>
+              par <a class="white--text" href="">https://www.linkedin.com/in/c%C3%A9cile-peign%C3%A9-4182a3105/</a>
             </div>
           </v-flex>
         </v-layout>
