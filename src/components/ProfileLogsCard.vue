@@ -29,7 +29,7 @@
         <profile-logs-panels v-for="(log, i) in logs" :key="i" :info="{ id: log.id, date: log.date, comment: log.comment }" />
       </v-expansion-panels>
     </div>
-    <form-profile-log v-model="dialog" :contactid="contactId" />
+    <form-profile-log v-model="dialog" :contactid="contactId" @new-log="newLog"/>
   </v-card>
 </template>
 
@@ -65,6 +65,9 @@ export default {
     none () {
       this.panel = []
     },
+    newLog() {
+      this.$forceUpdate();
+    }
   },
 
   created() {
@@ -72,9 +75,17 @@ export default {
     axios
     .get(`/admin/contacts/logs/${this.profile}`)
     .then(response => {
-      this.logs = response.data
+      this.logs = response.data;
     })
   }
+
+  // updated() {
+  //   axios
+  //   .get(`/admin/contacts/logs/${this.profile}`)
+  //   .then(response => {
+  //     this.logs = response.data;
+  //   })
+  // }
 }
 </script>
 

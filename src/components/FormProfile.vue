@@ -131,7 +131,10 @@
           .post(`/admin/contacts/profile/add`, this.postBody)
           .then(resp => {
             if (resp.data.msg) {
-              localStorage.setItem('msg', JSON.parse(JSON.stringify(resp.data.msg)))
+              localStorage.setItem('msg', JSON.parse(JSON.stringify(resp.data.msg)));
+            }
+            if (resp.data.newContact) {
+              this.$emit('new-contact', resp.data.newContact);
             }
           })
           .catch(error => {

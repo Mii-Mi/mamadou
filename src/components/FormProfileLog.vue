@@ -109,6 +109,7 @@
               localStorage.setItem('msg', JSON.parse(JSON.stringify(error.response.data.msg)))
             }
           }).finally(() => {
+            this.$emit('new-log');
             setTimeout(() => {
               return this.$flash.$emit('msg')
             }, 500)
