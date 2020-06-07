@@ -67,7 +67,7 @@ module.exports = {
     const postLog = {
       text: `INSERT INTO contlogs(contactid, comment)
               VALUES ($1, $2)
-              RETURNING *`,
+              RETURNING *, to_char(created, 'dd/mm/yyyy - HH24hMI') date`,
       values: [req.params.contactid, req.body.content]
     }
     pool.query(
@@ -95,7 +95,7 @@ module.exports = {
             )
           });
         }
-        return res.status(201).send({msg: 'Suivi ajouté !'})
+        return res.status(201).send({msg: 'Suivi ajouté !', added: newLog.rows[0]})
       }
     )
   }

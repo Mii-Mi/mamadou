@@ -40,7 +40,7 @@
                 <profile-card :items="{id: contact.id, firstName: contact.firstname, lastName: contact.lastname, age: contact.age, adress: contact.adress, email: contact.email, telephone: contact.telephone}" />
               </v-col>
               <v-col cols="12" md="8">
-                <profile-logs-card :contactId="contact.id" />
+                <profile-logs :contactId="contact.id" />
               </v-col>
             </v-row>
           </v-container>
@@ -52,13 +52,13 @@
 
 <script>
 import profileCard from './ProfileCard'
-import profileLogsCard from './ProfileLogsCard'
+import profileLogs from './ProfileLogs'
 import axios from '../../http-common'
 
 export default {
   components: {
     profileCard,
-    profileLogsCard
+    profileLogs
   },
   computed: {
     fullContacts() {

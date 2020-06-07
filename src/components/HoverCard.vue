@@ -35,7 +35,6 @@
             </v-btn>
           </v-fab-transition>
         <form-dialog v-model="dialog" v-if="info[0]" :item="{id: info[0].id, icon: info[0].icon, title: info[0].title, content: info[0].content, type:'commonposts'}" />
-        
       </v-card>
     </v-hover>
   </v-col>

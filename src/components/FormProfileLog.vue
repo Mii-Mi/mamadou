@@ -101,24 +101,25 @@
           .post(`/admin/contacts/logs/add/${this.contactId}`, this.postBody)
           .then(resp => {
             if (resp.data.msg) {
-              localStorage.setItem('msg', JSON.parse(JSON.stringify(resp.data.msg)))
+              localStorage.setItem('msg', JSON.parse(JSON.stringify(resp.data.msg)));
+            }
+            if (resp.data.added) {
+              this.$emit('new-log', resp.data.added);
             }
           })
           .catch(error => {
             if (error.response.data.msg) {
-              localStorage.setItem('msg', JSON.parse(JSON.stringify(error.response.data.msg)))
+              localStorage.setItem('msg', JSON.parse(JSON.stringify(error.response.data.msg)));
             }
           }).finally(() => {
-            this.$emit('new-log');
             setTimeout(() => {
-              return this.$flash.$emit('msg')
+              return this.$flash.$emit('msg');
             }, 500)
           })
       }
     },
     created() {
-      this.contactId = this.contactid
+      this.contactId = this.contactid;
     }
-    
   }
 </script>

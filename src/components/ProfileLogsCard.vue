@@ -1,58 +1,77 @@
 <template>
   <v-card
-    :elevation="2"
-    class="mx-auto"
-    height="100%"
-  >
-    <v-toolbar
-    dense
-    color="cyan lighten-4"
-    flat
+      :elevation="2"
+      class="mx-auto"
+      height="100%"
     >
-      <v-toolbar-title>Suivi</v-toolbar-title>
-      <v-spacer />
-        <v-btn class="mx-2" small fab dark color="cyan darken-2" @click.stop="dialog = true">
-          <v-icon dark>mdi-plus</v-icon>
-        </v-btn>
-        <v-btn fab small color="cyan lighten-4" @click="none" title="tout refermer">
-          <v-icon dark>mdi-chevron-double-up</v-icon>
-        </v-btn>
-        <v-btn fab small color="cyan lighten-4" @click="all" title="tout déplier">
-          <v-icon dark>mdi-chevron-double-down</v-icon>
-        </v-btn>
-    </v-toolbar>
-    <div>
-      <v-expansion-panels
-        v-model="panel"
-        multiple
+      <v-toolbar
+      dense
+      color="cyan lighten-4"
+      flat
       >
-        <profile-logs-panels v-for="(log, i) in logs" :key="i" :info="{ id: log.id, date: log.date, comment: log.comment }" />
-      </v-expansion-panels>
-    </div>
-    <form-profile-log v-model="dialog" :contactid="contactId" @new-log="newLog"/>
-  </v-card>
+        <v-toolbar-title>Suivi</v-toolbar-title>
+        <v-spacer />
+          <v-btn class="mx-2" small fab dark color="cyan darken-2" @click.stop="$emit('dial')">
+            <v-icon dark>mdi-plus</v-icon>
+          </v-btn>
+          <v-btn fab small color="cyan lighten-4" @click="none" title="tout refermer">
+            <v-icon dark>mdi-chevron-double-up</v-icon>
+          </v-btn>
+          <v-btn fab small color="cyan lighten-4" @click="all" title="tout déplier">
+            <v-icon dark>mdi-chevron-double-down</v-icon>
+          </v-btn>
+      </v-toolbar>
+      <div>
+        <v-expansion-panels
+          v-model="panel"
+          multiple
+        >
+          <profile-logs-panels v-for="log in logs" :key="log.id" :info="{ id: log.id, date: log.date, comment: log.comment, index: log.id }" @del-log="delLog" />
+        </v-expansion-panels>
+      </div>
+    </v-card>
 </template>
 
 <script>
 import axios from '../../http-common'
-import formProfileLog from './FormProfileLog'
 import profileLogsPanels from './ProfileLogsPanels'
 
 export default {
   props: {
-    contactId: Number
+    contact_id: Number,
+    new_log: {
+      type: Object,
+      default: () => {}
+    }
   },
 
   components: {
-    formProfileLog,
     profileLogsPanels
+  },
+
+  computed: {
+    fullLogs() {
+      if (this.new_log){
+        let full= this.logs;
+        full.unshift(this.new_log)
+        this.$emit('newLogDone');
+        return full;
+      }else{
+        return this.logs;
+      }
+    }
+  },
+
+  watch: {
+    fullLogs: function (full) {
+      this.logs = full;
+    }
   },
 
   data: () => ({
     panel: [],
     logs: [],
     profile: null,
-    dialog: false,
   }),
 
   methods: {
@@ -65,27 +84,24 @@ export default {
     none () {
       this.panel = []
     },
-    newLog() {
-      this.$forceUpdate();
+    delLog(event) {
+      //console.log("index to delete: " + event);
+      //console.log("panel array: " + this.panel);
+      this.$delete(this.fullLogs, event);
+      //this.panel.splice(event, 1) ;
+      this.panel = [] ;
+      //console.log(this.fullLogs);
     }
   },
 
-  created() {
-    this.profile = this.contactId
+  mounted() {
+    this.profile = this.contact_id
     axios
     .get(`/admin/contacts/logs/${this.profile}`)
     .then(response => {
       this.logs = response.data;
     })
   }
-
-  // updated() {
-  //   axios
-  //   .get(`/admin/contacts/logs/${this.profile}`)
-  //   .then(response => {
-  //     this.logs = response.data;
-  //   })
-  // }
 }
 </script>
 
