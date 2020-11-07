@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="show" persistent max-width="920px">
+    <v-dialog v-model="show" persistent max-width="1024px">
       <v-card>
         <v-toolbar
                 color="cyan"
@@ -109,6 +109,5 @@
     created() {
       this.postBody = this.val
     }
-    
   }
 </script>

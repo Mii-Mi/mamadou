@@ -1,9 +1,9 @@
 <template>
-  <v-container 
-    class="grey lighten-2"    
+  <v-container
+    class="grey lighten-2"
   >
     <v-row justify="center">
-      <v-col cols="12" md="9">
+      <v-col cols="12" md="12">
         <v-btn block color="cyan darken-2" dark @click.stop="dialog = true">Créer contact</v-btn>
         <p></p>
         <contacts-card :new_contact="newContact[0]" @newContactDone="resetNewContact"/>
@@ -28,6 +28,7 @@ export default {
   }),
   methods: {
     addContact(event) {
+      console.log(event);
       this.newContact.unshift(event);
     },
     resetNewContact() {

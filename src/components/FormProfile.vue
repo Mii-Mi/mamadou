@@ -99,7 +99,7 @@
   export default {
     data: () => ({
       valid: false,
-      
+
       requiredRules: [
         v => !!v || 'Champs requis'
       ],
@@ -148,6 +148,5 @@
           })
       }
     },
-    
   }
 </script>

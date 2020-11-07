@@ -1,17 +1,15 @@
 <template>
-  
   <v-card
     :elevation="2"
     class="mx-auto"
   >
-    <!-- <pre>{{new_contact}}</pre> -->
-    <v-expansion-panels 
+    <v-expansion-panels
       focusable
       v-model="panel"
     >
       <v-expansion-panel
         v-for="(contact, i) in fullContacts"
-        :key="i"
+        :key="contact.id"
       >
         <v-expansion-panel-header v-slot="{ open }">
           <v-layout row wrap>
@@ -97,14 +95,15 @@ export default {
         if (error.response.data.msg) {
           localStorage.setItem('msg', JSON.parse(JSON.stringify(error.response.data.msg)))
         }
-      }).finally(() => {
+      })
+      .finally(() => {
         setTimeout(() => {
           return this.$flash.$emit('msg')
         }, 500)
       })
     }
   },
-  created() {
+  mounted() {
     axios
     .get('/admin/contacts')
     .then(response => {

@@ -11,22 +11,22 @@
       >
         <v-toolbar-title>Suivi</v-toolbar-title>
         <v-spacer />
-          <v-btn class="mx-2" small fab dark color="cyan darken-2" @click.stop="$emit('dial')">
-            <v-icon dark>mdi-plus</v-icon>
-          </v-btn>
-          <v-btn fab small color="cyan lighten-4" @click="none" title="tout refermer">
-            <v-icon dark>mdi-chevron-double-up</v-icon>
-          </v-btn>
-          <v-btn fab small color="cyan lighten-4" @click="all" title="tout déplier">
-            <v-icon dark>mdi-chevron-double-down</v-icon>
-          </v-btn>
+        <v-btn class="mx-2" small fab dark color="cyan darken-2" @click.stop="$emit('dial')">
+          <v-icon dark>mdi-plus</v-icon>
+        </v-btn>
+        <v-btn fab small color="cyan lighten-4" @click="none" title="tout refermer">
+          <v-icon dark>mdi-chevron-double-up</v-icon>
+        </v-btn>
+        <v-btn fab small color="cyan lighten-4" @click="all" title="tout déplier">
+          <v-icon dark>mdi-chevron-double-down</v-icon>
+        </v-btn>
       </v-toolbar>
       <div>
         <v-expansion-panels
           v-model="panel"
           multiple
         >
-          <profile-logs-panels v-for="log in logs" :key="log.id" :info="{ id: log.id, date: log.date, comment: log.comment, index: log.id }" @del-log="delLog" />
+          <profile-logs-panels v-for="log in logs" :key="log.id" :info="{ id: log.id, date: log.date, comment: log.comment, index: log.id}" @del-log="delLog" />
         </v-expansion-panels>
       </div>
     </v-card>
@@ -65,6 +65,7 @@ export default {
   watch: {
     fullLogs: function (full) {
       this.logs = full;
+      console.log(this.logs);
     }
   },
 
@@ -85,12 +86,9 @@ export default {
       this.panel = []
     },
     delLog(event) {
-      //console.log("index to delete: " + event);
-      //console.log("panel array: " + this.panel);
-      this.$delete(this.fullLogs, event);
-      //this.panel.splice(event, 1) ;
-      this.panel = [] ;
-      //console.log(this.fullLogs);
+      const logToDelete = this.logs.find(log => log.id === event);
+      const indexToDelete = this.logs.indexOf(logToDelete);
+      this.$delete(this.logs, indexToDelete);
     }
   },
 
@@ -101,7 +99,7 @@ export default {
     .then(response => {
       this.logs = response.data;
     })
-  }
+  },
 }
 </script>
 

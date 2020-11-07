@@ -7,7 +7,7 @@ module.exports = {
     if(!req.body.adress) req.body.adress = 'Non communiqué'
     if(!req.body.age) req.body.age = 0
     const newProfile = {
-      text: `INSERT INTO contacts(firstname, lastname, email, telephone, adress, age) 
+      text: `INSERT INTO contacts(firstname, lastname, email, telephone, adress, age)
               VALUES ($1, $2, $3, $4, $5, $6)
               RETURNING *`,
       values: [req.body.firstName, req.body.lastName, req.body.email, req.body.telephone, req.body.adress, req.body.age]

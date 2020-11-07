@@ -83,7 +83,7 @@
   export default {
     data: () => ({
       valid: false,
-      
+
       nameRules: [
         v => !!v || 'le champs nom est requis'
       ],
@@ -133,6 +133,6 @@
           })
       }
     },
-    
+
   }
 </script>
