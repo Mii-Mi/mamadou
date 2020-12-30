@@ -52,7 +52,7 @@
         </v-list-item>
       </v-list-item-group>
     </v-list>
-    <form-profile-edit v-model="dialog" :val="{ id:info.id, firstName:info.firstName, lastName:info.lastName, age:info.age, adress:info.adress, email:info.email, telephone:info.telephone }" />
+    <form-profile-edit v-model="dialog" :val="{ id:info.id, firstName:info.firstName, lastName:info.lastName, age:info.age, adress:info.adress, email:info.email, telephone:info.telephone }" @updated-profile="update" />
   </v-card>
 </template>
 
@@ -72,6 +72,13 @@ export default {
     info: {},
     dialog: false
   }),
+
+  methods: {
+    update(event){
+      this.info = event
+      this.$emit('updated-profile', this.info)
+    }
+  },
 
   created() {
     this.info = this.items

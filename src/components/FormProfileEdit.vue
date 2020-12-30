@@ -99,7 +99,7 @@
   export default {
     data: () => ({
       valid: false,
-      
+
       requiredRules: [
         v => !!v || 'Champs requis'
       ],
@@ -134,6 +134,9 @@
             if (resp.data.msg) {
               localStorage.setItem('msg', JSON.parse(JSON.stringify(resp.data.msg)))
             }
+            if (resp.data.updated) {
+              this.$emit('updated-profile', resp.data.updated);
+            }
           })
           .catch(error => {
             if (error.response.data.msg) {
@@ -149,6 +152,5 @@
     created() {
       this.postBody = this.val
     }
-    
   }
 </script>

@@ -35,7 +35,7 @@
           <v-container>
             <v-row>
               <v-col cols="12" md="4">
-                <profile-card :items="{id: contact.id, firstName: contact.firstname, lastName: contact.lastname, age: contact.age, adress: contact.adress, email: contact.email, telephone: contact.telephone}" />
+                <profile-card :items="{id: contact.id, firstName: contact.firstname, lastName: contact.lastname, age: contact.age, adress: contact.adress, email: contact.email, telephone: contact.telephone}" @updated-profile="updateOneProfile(i, $event)" />
               </v-col>
               <v-col cols="12" md="8">
                 <profile-logs :contactId="contact.id" />
@@ -101,6 +101,9 @@ export default {
           return this.$flash.$emit('msg')
         }, 500)
       })
+    },
+    updateOneProfile(i, event){
+      this.$set(this.fullContacts, i, event)
     }
   },
   mounted() {

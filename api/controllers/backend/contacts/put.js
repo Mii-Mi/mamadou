@@ -3,22 +3,23 @@ const pool = require('../../../db/index')
 module.exports = {
   profile: (req, res, next) => {
     const putProfile = {
-      text: `UPDATE contacts 
+      text: `UPDATE contacts
               SET firstname = $1, lastname = $2, age = $3, adress = $4, email = $5, telephone = $6
-              WHERE id = $7`,
+              WHERE id = $7
+              RETURNING *`,
       values: [req.body.firstName, req.body.lastName, req.body.age, req.body.adress, req.body.email, req.body.telephone, req.params.contactId]
     }
     pool.query(
       putProfile,
       (err, newProfile) => {
-        if (err) return next(err)
-        return res.status(201).send({msg: 'Profil modifié !'})
+        if (err) return next(err);
+        return res.status(201).send({msg: 'Profil modifié !', updated: newProfile.rows[0]});
       }
     )
   },
   contactLog: (req, res, next) => {
     const putLog = {
-      text: `UPDATE contlogs SET comment = $1 WHERE id = $2 RETURNING *`,
+      text: `UPDATE contlogs SET comment = $1 WHERE id = $2 RETURNING *, to_char(created, 'dd/mm/yyyy - HH24hMI') date`,
       values: [req.body.content, req.params.logId]
     }
     pool.query(
@@ -46,7 +47,7 @@ module.exports = {
             )
           });
         }
-        return res.status(201).send({ msg: 'Session Modifiée !' })
+        return res.status(201).send({ msg: 'Session Modifiée !', updatedLog: newCom.rows[0] })
       }
     )
   }

@@ -35,7 +35,7 @@
     </v-expansion-panel-header>
     <v-expansion-panel-content>
       <div v-html="log.comment"></div>
-      <form-profile-log-edit v-model="dialog" :val="{id: log.id, content: log.comment}" />
+      <form-profile-log-edit v-model="dialog" :val="{id: log.id, content: log.comment}" @updated-log=update />
     </v-expansion-panel-content>
   </v-expansion-panel>
 </template>
@@ -72,7 +72,10 @@ export default {
           return this.$flash.$emit('msg')
         }, 500)
       })
-    }
+    },
+    update(event) {
+      this.log=event
+    },
   },
 
   mounted() {

@@ -46,7 +46,7 @@
   export default {
 
     name: 'Admin',
-    
+
     data: () => ({
       drawer: null,
     }),

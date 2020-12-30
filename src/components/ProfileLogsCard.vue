@@ -56,7 +56,8 @@ export default {
         full.unshift(this.new_log)
         this.$emit('newLogDone');
         return full;
-      }else{
+      }
+      else{
         return this.logs;
       }
     }
@@ -65,7 +66,6 @@ export default {
   watch: {
     fullLogs: function (full) {
       this.logs = full;
-      console.log(this.logs);
     }
   },
 

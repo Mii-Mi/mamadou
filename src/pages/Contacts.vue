@@ -28,7 +28,6 @@ export default {
   }),
   methods: {
     addContact(event) {
-      console.log(event);
       this.newContact.unshift(event);
     },
     resetNewContact() {

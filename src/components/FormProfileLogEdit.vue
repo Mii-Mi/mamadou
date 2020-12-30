@@ -99,9 +99,20 @@
         axios
           .put(`/admin/contacts/logs/put/${this.postBody.id}`, this.postBody)
           .then((resp) => {
-            localStorage.setItem('msg', resp.data.msg)
+            if (resp.data.msg) {
+              localStorage.setItem('msg', JSON.parse(JSON.stringify(resp.data.msg)));
+            }
+            if (resp.data.updatedLog) {
+              this.$emit('updated-log', resp.data.updatedLog);
+            }
+          })
+          .catch(error => {
+            if (error.response.data.msg) {
+              localStorage.setItem('msg', JSON.parse(JSON.stringify(error.response.data.msg)));
+            }
+          }).finally(() => {
             setTimeout(() => {
-              return this.$flash.$emit('msg')
+              return this.$flash.$emit('msg');
             }, 500)
           })
       }
